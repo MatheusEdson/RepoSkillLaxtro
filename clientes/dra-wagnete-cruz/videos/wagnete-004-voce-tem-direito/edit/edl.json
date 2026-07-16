@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "sources": {
+    "R": "C:/Users/josep/.gemini/antigravity-ide/scratch/RepoSkillLaxtro/clientes/dra-wagnete-cruz/videos/wagnete-004-voce-tem-direito/source.mp4"
+  },
+  "ranges": [
+    {
+      "source": "R",
+      "start": 1.23,
+      "end": 17.08,
+      "beat": "seg"
+    },
+    {
+      "source": "R",
+      "start": 18.06,
+      "end": 19.8,
+      "beat": "seg"
+    },
+    {
+      "source": "R",
+      "start": 20.61,
+      "end": 34.43,
+      "beat": "seg"
+    },
+    {
+      "source": "R",
+      "start": 35.23,
+      "end": 42.18,
+      "beat": "seg"
+    },
+    {
+      "source": "R",
+      "start": 44.65,
+      "end": 84.9,
+      "beat": "seg"
+    },
+    {
+      "source": "R",
+      "start": 88.27,
+      "end": 120.5,
+      "beat": "seg"
+    },
+    {
+      "source": "R",
+      "start": 121.25,
+      "end": 125.73,
+      "beat": "seg"
+    }
+  ],
+  "grade": "none",
+  "total_duration_s": 115.32
+}

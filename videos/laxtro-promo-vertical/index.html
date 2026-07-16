@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face {
+        font-family: "Geist";
+        src: url("capture/assets/fonts/53b9e256198e5412-s.0-wfv7uh4i7h9.woff2") format("woff2");
+        font-weight: 100 900;
+        font-style: normal;
+        font-display: block;
+      }
+      @font-face {
+        font-family: "Geist Mono";
+        src: url("capture/assets/fonts/4fa387ec64143e14-s.0.qu-9752pffj.woff2") format("woff2");
+        font-weight: 100 900;
+        font-style: normal;
+        font-display: block;
+      }
+
+      :root {
+        --blue: #1abcfe;
+        --purple: #a259ff;
+        --green: #0acf83;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body {
+        margin: 0;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #000000;
+      }
+      body {
+        font-family: "Geist", system-ui, sans-serif;
+        color: #ffffff;
+        -webkit-font-smoothing: antialiased;
+      }
+      .mono {
+        font-family: "Geist Mono", ui-monospace, monospace;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        color: #a6a6a6;
+        font-weight: 600;
+      }
+      .scene {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        padding: 160px 90px;
+        box-sizing: border-box;
+        text-align: center;
+      }
+      .kicker { font-size: 23px; }
+      .hair { background: rgba(255,255,255,0.85); height: 2px; }
+      .accent-blue { color: var(--blue); }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="30"
+      data-width="1080"
+      data-height="1920"
+      style="position: relative; width: 1080px; height: 1920px; overflow: hidden; background: #000000;"
+    >
+      <!-- ============ PERSISTENT CHROME (track 0, full 30s) ============ -->
+      <div id="chrome" class="clip" data-start="0" data-duration="30" data-track-index="0"
+           style="position:absolute; inset:0; pointer-events:none;">
+        <div style="position:absolute; top:0; left:0; right:0; height:4px; background:rgba(255,255,255,0.08);">
+          <div id="progress" style="position:absolute; top:0; left:0; height:4px; width:100%; background:var(--blue); transform:scaleX(0); transform-origin:left center;"></div>
+        </div>
+        <div id="wm-tl" class="mono" style="position:absolute; top:66px; left:72px; font-size:18px; letter-spacing:0.28em; color:#8f8f8f; font-weight:600;">LAXTRO.CO</div>
+        <div id="wm-br" class="mono" style="position:absolute; bottom:64px; right:72px; font-size:17px; color:#7a7a7a; font-weight:600;">@laxtro.co</div>
+      </div>
+
+      <!-- ============ SCENE 1 — COLD OPEN (0 - 3.8) ============ -->
+      <section id="s1" class="scene clip" data-start="0" data-duration="3.8" data-track-index="1">
+        <div style="display:flex; flex-direction:column; align-items:center; gap:40px;">
+          <div id="s1-kicker" class="mono kicker">Ciclo Jun — Jul · 2026 · <span style="color:var(--green);">1 vaga</span></div>
+          <div style="display:flex; align-items:baseline; justify-content:center; line-height:1.2;">
+            <span id="s1-logo" style="display:inline-block; font-size:150px; font-weight:580; letter-spacing:-0.045em; line-height:1.2;">Laxtro</span><span id="s1-co" style="display:inline-block; font-size:150px; font-weight:580; letter-spacing:-0.04em; line-height:1.2;">.Co</span>
+          </div>
+          <div id="s1-rule" class="hair" style="width:420px; transform:scaleX(0); transform-origin:center;"></div>
+          <div id="s1-sub" class="mono" style="font-size:21px; color:#b0b0b0; letter-spacing:0.24em; font-weight:600;">Consultoria Impulsionadora de Perfil</div>
+        </div>
+      </section>
+
+      <!-- ============ SCENE 2 — QUESTION HOOK (3.8 - 9.0) ============ -->
+      <section id="s2" class="scene clip" data-start="3.8" data-duration="5.2" data-track-index="1">
+        <div style="display:flex; flex-direction:column; align-items:center; gap:42px; max-width:900px;">
+          <div id="s2-kicker" class="mono kicker">Uma pergunta honesta</div>
+          <p id="s2-q1" style="font-size:60px; font-weight:460; line-height:1.22; color:#cfcfcf;">E se o seu problema nunca tivesse sido</p>
+          <h2 id="s2-q2" style="font-size:104px; font-weight:660; letter-spacing:-0.035em; line-height:1.02;">falta de conteúdo?</h2>
+        </div>
+      </section>
+
+      <!-- ============ SCENE 3 — POSITIONING (9.0 - 13.2) ============ -->
+      <section id="s3" class="scene clip" data-start="9.0" data-duration="4.2" data-track-index="1">
+        <div style="display:flex; flex-direction:column; align-items:center; gap:30px;">
+          <div id="s3-kicker" class="mono kicker" style="margin-bottom:20px;">O Co-Piloto</div>
+          <div style="position:relative; display:inline-block;">
+            <span id="s3-l1" style="display:inline-block; font-size:96px; font-weight:560; letter-spacing:-0.035em; color:#ffffff;">Não é agência.</span>
+            <div id="s3-strike" class="hair" style="position:absolute; left:-6px; right:-6px; top:52%; transform:scaleX(0); transform-origin:left center; background:rgba(255,255,255,0.6);"></div>
+          </div>
+          <span id="s3-l2" style="display:inline-block; font-size:118px; font-weight:660; letter-spacing:-0.04em; color:#ffffff;">É co-piloto.</span>
+        </div>
+      </section>
+
+      <!-- ============ SCENE 4 — CONCEPT (13.2 - 17.6) ============ -->
+      <section id="s4" class="scene clip" data-start="13.2" data-duration="4.4" data-track-index="1">
+        <div style="display:flex; flex-direction:column; align-items:center; gap:44px; max-width:920px;">
+          <div id="s4-kicker" class="mono kicker">O Conceito</div>
+          <h2 id="s4-h" style="font-size:88px; font-weight:580; letter-spacing:-0.04em; line-height:1.04;">A diferença que muda tudo.</h2>
+          <p id="s4-sub" style="font-size:40px; font-weight:460; line-height:1.4; color:#cfcfcf;">Transformamos autoridade latente em presença de mercado <span style="color:var(--purple); font-weight:640;">mensurável</span>.</p>
+        </div>
+      </section>
+
+      <!-- ============ SCENE 5 — THE SYSTEM / PIPELINE (17.6 - 23.8) ============ -->
+      <section id="s5" class="scene clip" data-start="17.6" data-duration="6.2" data-track-index="1">
+        <div style="display:flex; flex-direction:column; align-items:center; gap:34px; width:100%;">
+          <div style="display:flex; flex-direction:column; align-items:center; gap:14px;">
+            <div id="s5-kicker" class="mono kicker">O Sistema — Pipeline Editorial</div>
+            <h2 id="s5-h" style="font-size:62px; font-weight:580; letter-spacing:-0.035em;">De ponta a ponta.</h2>
+          </div>
+          <div id="s5-col" style="display:flex; flex-direction:column; align-items:center; gap:6px;">
+            <div class="s5-step" style="display:flex; align-items:center; gap:24px;">
+              <div class="mono" style="font-size:18px; color:#8f8f8f; width:42px; text-align:right; font-weight:600;">01</div>
+              <div class="s5-pill" style="padding:18px 46px; border:1.5px solid rgba(255,255,255,0.26); border-radius:999px; font-size:38px; font-weight:560; white-space:nowrap; min-width:360px; text-align:center;">DNA</div>
+            </div>
+            <div class="s5-arrow" style="font-size:30px; color:#6a6a6a; line-height:1;">↓</div>
+            <div class="s5-step" style="display:flex; align-items:center; gap:24px;">
+              <div class="mono" style="font-size:18px; color:#8f8f8f; width:42px; text-align:right; font-weight:600;">02</div>
+              <div class="s5-pill" style="padding:18px 46px; border:1.5px solid rgba(255,255,255,0.26); border-radius:999px; font-size:38px; font-weight:560; white-space:nowrap; min-width:360px; text-align:center;">Trends</div>
+            </div>
+            <div class="s5-arrow" style="font-size:30px; color:#6a6a6a; line-height:1;">↓</div>
+            <div class="s5-step" style="display:flex; align-items:center; gap:24px;">
+              <div class="mono" style="font-size:18px; color:#8f8f8f; width:42px; text-align:right; font-weight:600;">03</div>
+              <div class="s5-pill" style="padding:18px 46px; border:1.5px solid rgba(255,255,255,0.26); border-radius:999px; font-size:38px; font-weight:560; white-space:nowrap; min-width:360px; text-align:center;">Pauta</div>
+            </div>
+            <div class="s5-arrow" style="font-size:30px; color:#6a6a6a; line-height:1;">↓</div>
+            <div class="s5-step" style="display:flex; align-items:center; gap:24px;">
+              <div class="mono" style="font-size:18px; color:#8f8f8f; width:42px; text-align:right; font-weight:600;">04</div>
+              <div class="s5-pill" style="padding:18px 46px; border:1.5px solid rgba(255,255,255,0.26); border-radius:999px; font-size:38px; font-weight:560; white-space:nowrap; min-width:360px; text-align:center;">Roteiro</div>
+            </div>
+            <div class="s5-arrow" style="font-size:30px; color:#6a6a6a; line-height:1;">↓</div>
+            <div class="s5-step" style="display:flex; align-items:center; gap:24px;">
+              <div class="mono" style="font-size:18px; color:#8f8f8f; width:42px; text-align:right; font-weight:600;">05</div>
+              <div class="s5-pill" style="padding:18px 46px; border:1.5px solid #ffffff; border-radius:999px; font-size:38px; font-weight:680; white-space:nowrap; min-width:360px; text-align:center; background:#ffffff; color:#000000;">Content Day</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ SCENE 6 — PROOF / STATS (23.8 - 27.2) ============ -->
+      <section id="s6" class="scene clip" data-start="23.8" data-duration="3.4" data-track-index="1">
+        <div style="display:flex; flex-direction:column; align-items:center; gap:86px;">
+          <div class="s6-stat" style="display:flex; flex-direction:column; align-items:center; gap:24px;">
+            <div id="s6-n1" style="font-size:150px; font-weight:600; letter-spacing:-0.04em; line-height:1.05;">0</div>
+            <div class="mono" style="font-size:20px; color:#a6a6a6; font-weight:600;">Clientes ativos</div>
+          </div>
+          <div class="s6-stat" style="display:flex; flex-direction:column; align-items:center; gap:24px;">
+            <div id="s6-n2" style="font-size:150px; font-weight:600; letter-spacing:-0.04em; line-height:1.05;">0</div>
+            <div class="mono" style="font-size:20px; color:#a6a6a6; font-weight:600;">Etapas no sistema</div>
+          </div>
+          <div class="s6-stat" style="display:flex; flex-direction:column; align-items:center; gap:24px;">
+            <div id="s6-n3" style="font-size:150px; font-weight:600; letter-spacing:-0.04em; line-height:1.05; color:var(--green);">0</div>
+            <div class="mono" style="font-size:20px; color:#a6a6a6; font-weight:600;">Vaga · ciclo Jun/Jul</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ SCENE 7 — CTA CLOSE (27.2 - 30) ============ -->
+      <section id="s7" class="scene clip" data-start="27.2" data-duration="2.8" data-track-index="1">
+        <div style="display:flex; flex-direction:column; align-items:center; gap:54px;">
+          <div style="display:flex; align-items:baseline; justify-content:center; line-height:1.2;">
+            <span id="s7-logo" style="display:inline-block; font-size:96px; font-weight:580; letter-spacing:-0.045em; line-height:1.2;">Laxtro</span><span id="s7-co" style="display:inline-block; font-size:96px; font-weight:580; letter-spacing:-0.04em; line-height:1.2;">.Co</span>
+          </div>
+          <div style="position:relative; display:inline-flex;">
+            <div id="s7-ring" style="position:absolute; inset:-14px; border:2.5px dashed var(--blue); border-radius:999px; transform:scale(0.92);"></div>
+            <div id="s7-btn" style="padding:28px 60px; background:#ffffff; color:#000000; border-radius:999px; font-size:36px; font-weight:580; letter-spacing:-0.01em; white-space:nowrap;">Solicitar avaliação editorial</div>
+          </div>
+          <div id="s7-url" class="mono" style="font-size:21px; color:#a6a6a6; letter-spacing:0.22em; font-weight:600;">@laxtro.co · <span style="color:var(--green);">lista fechada</span></div>
+        </div>
+      </section>
+
+      <!-- ============ AUDIO (track 10) ============ -->
+      <audio id="bgm" src="capture/assets/bgm_keynote.mp3" data-start="0" data-duration="30" data-track-index="10" data-volume="0.85"></audio>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      const EASE = "expo.out";
+
+      // ---------- persistent chrome ----------
+      tl.to("#progress", { scaleX: 1, ease: "none", duration: 30 }, 0);
+      tl.fromTo("#wm-tl", { opacity: 0 }, { opacity: 1, duration: 0.8 }, 0.2);
+      tl.fromTo("#wm-br", { opacity: 0 }, { opacity: 1, duration: 0.8 }, 0.4);
+
+      // ---------- SCENE 1 (0 - 3.8) ----------
+      tl.fromTo("#s1-kicker", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.9, ease: EASE }, 0.3);
+      tl.fromTo("#s1-logo", { opacity: 0, y: 70 }, { opacity: 1, y: 0, duration: 1.05, ease: EASE }, 0.5);
+      tl.fromTo("#s1-co", { opacity: 0, y: 70 }, { opacity: 1, y: 0, duration: 1.05, ease: EASE }, 0.72);
+      tl.fromTo("#s1-rule", { scaleX: 0 }, { scaleX: 1, duration: 1.0, ease: EASE }, 1.25);
+      tl.fromTo("#s1-sub", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.9, ease: EASE }, 1.7);
+      tl.set("#s1", { opacity: 1 }, 0);
+      tl.to("#s1", { opacity: 0, duration: 0.4, ease: "power2.in" }, 3.45);
+      tl.set("#s1", { opacity: 0 }, 3.8);
+
+      // ---------- SCENE 2 — QUESTION (3.8 - 9.0) ----------
+      tl.fromTo("#s2-kicker", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.8, ease: EASE }, 4.0);
+      tl.fromTo("#s2-q1", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.9, ease: EASE }, 4.25);
+      tl.fromTo("#s2-q2", { opacity: 0, y: 46 }, { opacity: 1, y: 0, duration: 1.0, ease: EASE }, 5.0);
+      tl.set("#s2", { opacity: 1 }, 3.8);
+      tl.to("#s2", { opacity: 0, duration: 0.4, ease: "power2.in" }, 8.65);
+      tl.set("#s2", { opacity: 0 }, 9.0);
+
+      // ---------- SCENE 3 — POSITIONING (9.0 - 13.2) ----------
+      tl.fromTo("#s3-kicker", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.8, ease: EASE }, 9.2);
+      tl.fromTo("#s3-l1", { opacity: 0, y: 38 }, { opacity: 1, y: 0, duration: 0.85, ease: EASE }, 9.35);
+      tl.fromTo("#s3-strike", { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power3.inOut" }, 10.7);
+      tl.to("#s3-l1", { color: "#5c5c5c", duration: 0.45 }, 10.75);
+      tl.fromTo("#s3-l2", { opacity: 0, y: 46 }, { opacity: 1, y: 0, duration: 0.9, ease: EASE }, 10.9);
+      tl.set("#s3", { opacity: 1 }, 9.0);
+      tl.to("#s3", { opacity: 0, duration: 0.4, ease: "power2.in" }, 12.85);
+      tl.set("#s3", { opacity: 0 }, 13.2);
+
+      // ---------- SCENE 4 — CONCEPT (13.2 - 17.6) ----------
+      tl.fromTo("#s4-kicker", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.8, ease: EASE }, 13.4);
+      tl.fromTo("#s4-h", { opacity: 0, y: 42 }, { opacity: 1, y: 0, duration: 1.0, ease: EASE }, 13.55);
+      tl.fromTo("#s4-sub", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.9, ease: EASE }, 14.3);
+      tl.set("#s4", { opacity: 1 }, 13.2);
+      tl.to("#s4", { opacity: 0, duration: 0.4, ease: "power2.in" }, 17.25);
+      tl.set("#s4", { opacity: 0 }, 17.6);
+
+      // ---------- SCENE 5 — PIPELINE (17.6 - 23.8) ----------
+      tl.fromTo("#s5-kicker", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.8, ease: EASE }, 17.8);
+      tl.fromTo("#s5-h", { opacity: 0, y: 28 }, { opacity: 1, y: 0, duration: 0.85, ease: EASE }, 18.0);
+      tl.fromTo(".s5-step", { opacity: 0, scale: 0.9, y: 16 }, { opacity: 1, scale: 1, y: 0, duration: 0.55, ease: "back.out(1.4)", stagger: 0.34 }, 18.5);
+      tl.fromTo(".s5-arrow", { opacity: 0 }, { opacity: 1, duration: 0.3, stagger: 0.34 }, 18.78);
+      tl.set("#s5", { opacity: 1 }, 17.6);
+      tl.to("#s5", { opacity: 0, duration: 0.45, ease: "power2.in" }, 23.35);
+      tl.set("#s5", { opacity: 0 }, 23.8);
+
+      // ---------- SCENE 6 — STATS (23.8 - 27.2) ----------
+      const c1 = { v: 0 }, c2 = { v: 0 }, c3 = { v: 0 };
+      const pad = (n) => String(Math.round(n)).padStart(2, "0");
+      tl.fromTo(".s6-stat", { opacity: 0, y: 28 }, { opacity: 1, y: 0, duration: 0.6, ease: EASE, stagger: 0.14 }, 23.95);
+      tl.to(c1, { v: 12, duration: 1.2, ease: "power2.out", onUpdate: () => { document.getElementById("s6-n1").textContent = pad(c1.v); } }, 24.1);
+      tl.to(c2, { v: 5, duration: 1.2, ease: "power2.out", onUpdate: () => { document.getElementById("s6-n2").textContent = pad(c2.v); } }, 24.2);
+      tl.to(c3, { v: 1, duration: 1.2, ease: "power2.out", onUpdate: () => { document.getElementById("s6-n3").textContent = pad(c3.v); } }, 24.3);
+      tl.set("#s6", { opacity: 1 }, 23.8);
+      tl.to("#s6", { opacity: 0, duration: 0.4, ease: "power2.in" }, 26.85);
+      tl.set("#s6", { opacity: 0 }, 27.2);
+
+      // ---------- SCENE 7 — CTA (27.2 - 30) ----------
+      tl.fromTo("#s7-logo", { opacity: 0, y: 28 }, { opacity: 1, y: 0, duration: 0.8, ease: EASE }, 27.4);
+      tl.fromTo("#s7-co", { opacity: 0, y: 28 }, { opacity: 1, y: 0, duration: 0.8, ease: EASE }, 27.55);
+      tl.fromTo("#s7-btn", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.75, ease: EASE }, 27.75);
+      tl.fromTo("#s7-ring", { opacity: 0, scale: 1.12 }, { opacity: 1, scale: 1, duration: 0.65, ease: "power2.out" }, 28.15);
+      tl.fromTo("#s7-url", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.75, ease: EASE }, 28.4);
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

@@ -1,0 +1,104 @@
+{
+  "summary": {
+    "webAnimations": 2,
+    "cssDeclarations": 46,
+    "scrollTargets": 27,
+    "cdpAnimations": 54,
+    "canvases": 0
+  },
+  "namedAnimations": [
+    "pulse-dot",
+    "marquee"
+  ],
+  "scrollTriggeredElements": 27,
+  "representativeAnimations": [
+    {
+      "type": "CSSAnimation",
+      "playState": "running",
+      "animationName": "pulse-dot",
+      "targetSelector": "span.pulse-dot",
+      "targetRect": {
+        "x": 760.828125,
+        "y": 14.5,
+        "width": 6,
+        "height": 6,
+        "top": 14.5,
+        "right": 766.828125,
+        "bottom": 20.5,
+        "left": 760.828125
+      },
+      "keyframes": [
+        {
+          "offset": 0,
+          "easing": "cubic-bezier(0.4, 0, 0.6, 1)",
+          "composite": "auto",
+          "boxShadow": "rgba(34, 197, 94, 0.55) 0px 0px 0px 0px",
+          "opacity": "1",
+          "computedOffset": 0
+        },
+        {
+          "offset": 0.6,
+          "easing": "cubic-bezier(0.4, 0, 0.6, 1)",
+          "composite": "auto",
+          "boxShadow": "rgba(34, 197, 94, 0) 0px 0px 0px 6px",
+          "opacity": "0.75",
+          "computedOffset": 0.6
+        },
+        {
+          "offset": 1,
+          "easing": "cubic-bezier(0.4, 0, 0.6, 1)",
+          "composite": "auto",
+          "boxShadow": "rgba(34, 197, 94, 0.55) 0px 0px 0px 0px",
+          "opacity": "1",
+          "computedOffset": 1
+        }
+      ],
+      "timing": {
+        "duration": 2400,
+        "delay": 0,
+        "iterations": null,
+        "easing": "linear",
+        "direction": "normal"
+      }
+    },
+    {
+      "type": "CSSAnimation",
+      "playState": "running",
+      "animationName": "marquee",
+      "targetSelector": "div.marquee-track",
+      "targetRect": {
+        "x": -975.0145263671875,
+        "y": 1095,
+        "width": 3211.9375,
+        "height": 14.390625,
+        "top": 1095,
+        "right": 2236.9229736328125,
+        "bottom": 1109.390625,
+        "left": -975.0145263671875
+      },
+      "keyframes": [
+        {
+          "offset": 0,
+          "easing": "linear",
+          "composite": "auto",
+          "transform": "translate(0px)",
+          "computedOffset": 0
+        },
+        {
+          "offset": 1,
+          "easing": "linear",
+          "composite": "auto",
+          "transform": "translate(-50%)",
+          "computedOffset": 1
+        }
+      ],
+      "timing": {
+        "duration": 28000,
+        "delay": 0,
+        "iterations": null,
+        "easing": "linear",
+        "direction": "normal"
+      }
+    }
+  ]
+}

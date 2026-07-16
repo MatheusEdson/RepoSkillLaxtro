@@ -1,0 +1,6 @@
+# Vídeos e mídia pesada — ficam só locais, não versionados (limite do GitHub)
+*.mp4
+*.mov
+*.mkv
+*.avi
+*.webm

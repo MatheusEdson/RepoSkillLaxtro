@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Dra. Wagnete — Auxílios · v3 (engine original)</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face { font-family:"Inter"; font-weight:400; font-style:normal; src:url("assets/fonts/inter-400.woff2") format("woff2"); }
+      @font-face { font-family:"Playfair Display"; font-weight:800; font-style:italic; src:url("assets/fonts/playfair-italic-800.woff2") format("woff2"); }
+      *,*::before,*::after{ box-sizing:border-box; }
+      html,body{ width:1080px; height:1920px; margin:0; overflow:hidden; background:#000; font-family:"Inter",sans-serif; }
+      #root{ position:relative; width:1080px; height:1920px; overflow:hidden; }
+      #bg-video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+      /* —— camada de legenda (engine original) —— */
+      .caption-layer{ position:absolute; inset:0; z-index:20; pointer-events:none; transform:translateZ(0); }
+      .safe-zone{ position:absolute; top:1040px; left:60px; width:884px; height:290px; display:flex; align-items:flex-start; justify-content:flex-start; }
+      .caption-block{ position:absolute; left:0; top:0; opacity:0; transform-origin:0% 0%; will-change:transform,opacity; backface-visibility:hidden; }
+      .caption-line{ display:flex; align-items:baseline; gap:14px; line-height:1.1; white-space:nowrap; }
+      .caption-line + .caption-line{ margin-top:8px; }
+      .word{ display:inline-block; color:#f5f0d0; text-shadow:0 2px 14px rgba(0,0,0,.62),0 6px 30px rgba(0,0,0,.42); will-change:transform,opacity; backface-visibility:hidden; }
+      .word--normal{ font-family:"Inter",sans-serif; font-size:60px; font-weight:400; font-style:normal; }
+      .word--italic{ font-family:"Inter",sans-serif; font-size:60px; font-weight:400; font-style:italic; }
+      .word--emphasis{ font-family:"Playfair Display",Georgia,serif; font-size:120px; font-weight:800; font-style:italic; line-height:.9; color:#f5f0d0; }
+      /* —— elementos glass MENORES, centralizados ACIMA da legenda —— */
+      /* elementos alinhados à ESQUERDA (mesma margem da legenda) e acima dela, com gap proporcional (não colado) */
+      .el-pos{ position:absolute; left:60px; right:60px; bottom:49.5%; display:flex; justify-content:flex-start; pointer-events:none; }
+      .card{ background:rgba(245,240,208,.16); -webkit-backdrop-filter:blur(16px); backdrop-filter:blur(16px); border:1px solid rgba(255,255,255,.5); box-shadow:0 10px 32px rgba(0,0,0,.34); color:#fff; }
+      .el-id{ border-radius:16px; padding:11px 24px; text-align:center; }
+      .el-id b{ font-size:25px; font-weight:700; color:#fff; } .el-id span{ display:block; font-size:16px; color:rgba(255,255,255,.84); margin-top:2px; }
+      .el-callout{ border-radius:14px; padding:11px 20px; font-size:27px; font-weight:600; }
+      .el-callout .ic{ color:#f0c970; margin-right:8px; }
+      .el-num{ border-radius:16px; padding:13px 26px; text-align:center; }
+      .el-num .num-big{ font-family:"Playfair Display",Georgia,serif; font-style:italic; font-weight:800; color:#f5f0d0; font-size:48px; line-height:1; }
+      .el-num .num-lab{ font-size:16px; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.85); margin-top:5px; }
+      .el-proof{ border-radius:14px; padding:11px 20px; text-align:center; }
+      .el-proof .p-t{ font-size:23px; font-weight:600; color:#fff; } .el-proof .p-s{ font-size:15px; color:rgba(255,255,255,.78); margin-top:3px; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-width="1080" data-height="1920" data-duration="66.27" data-fps="30">
+      <video id="bg-video" preload="auto" data-start="0" data-duration="66.27" data-track-index="0" data-has-audio="true" src="source.mp4"></video>
+      <div class="caption-layer" aria-hidden="true"><div id="caption-stage" class="safe-zone"></div></div>
+      <div id="idcard" class="clip el-pos" data-start="0" data-duration="5" data-track-index="3"><div class="card el-id"><b>Dra. Wagnete Cruz</b><span>Advogada Previdenciária · OAB/MG</span></div></div>
+      <div id="coacum" class="clip el-pos" data-start="12.1" data-duration="4.6" data-track-index="4"><div class="card el-callout"><span class="ic">⚠</span> Não acumula com outro benefício</div></div>
+      <div id="codica" class="clip el-pos" data-start="38.96" data-duration="4.6" data-track-index="4"><div class="card el-callout"><span class="ic">★</span> Dica importante</div></div>
+      <div id="numcard" class="clip el-pos" data-start="26.12" data-duration="6" data-track-index="5"><div class="card el-num"><div class="num-big"><span id="num-val">5</span> anos</div><div class="num-lab">retroativos · desde 2025</div></div></div>
+      <div id="proof" class="clip el-pos" data-start="46.32" data-duration="3.4" data-track-index="6"><div class="card el-proof"><div class="p-t">📂 casos reais no escritório</div><div class="p-s">sem identificar nomes</div></div></div>
+      <audio id="sfx-idcard" data-start="0" data-duration="0.4" data-track-index="20" src="assets/sfx/pop.wav"></audio>
+      <audio id="sfx-coacum" data-start="12.1" data-duration="0.4" data-track-index="21" src="assets/sfx/pop.wav"></audio>
+      <audio id="sfx-codica" data-start="38.96" data-duration="0.4" data-track-index="20" src="assets/sfx/pop.wav"></audio>
+      <audio id="sfx-numcard" data-start="26.12" data-duration="0.4" data-track-index="21" src="assets/sfx/pop.wav"></audio>
+      <audio id="sfx-proof" data-start="46.32" data-duration="0.4" data-track-index="20" src="assets/sfx/pop.wav"></audio>
+    </div>
+    <script>
+      var DURATION = 66.27;
+      var SAFE_WIDTH = 860;
+      var ENTRY_DUR = 0.1;
+      var SLIDE_DUR = 0.2;
+      var _fitCanvas = document.createElement("canvas");
+      var _fitCtx = _fitCanvas.getContext("2d");
+      function fitFontSize(text, base, weight, family, maxW) {
+        var size = base, min = Math.floor(base * 0.45);
+        while (size > min) { _fitCtx.font = weight + " " + size + "px " + family; if (_fitCtx.measureText(text).width <= maxW) return size; size -= 2; }
+        return min;
+      }
+      var W = [{"text":"Bom,","start":0.099,"end":0.219},{"text":"e","start":0.379,"end":0.519},{"text":"para","start":0.539,"end":0.699},{"text":"os","start":0.719,"end":0.819},{"text":"aposentados,","start":0.879,"end":1.799},{"text":"e","start":1.939,"end":2.039},{"text":"pra","start":2.079,"end":2.18},{"text":"quem","start":2.22,"end":2.299},{"text":"também","start":2.599,"end":2.919},{"text":"tá","start":3,"end":3.059},{"text":"recebendo","start":3.099,"end":3.539},{"text":"o","start":3.559,"end":3.639},{"text":"benefício","start":3.679,"end":4.079},{"text":"por","start":4.119,"end":4.199},{"text":"incapacidade","start":4.239,"end":4.839},{"text":"temporária?","start":4.9,"end":5.5},{"text":"Esses","start":5.659,"end":6.099},{"text":"podem","start":6.239,"end":6.559},{"text":"receber","start":6.599,"end":6.98},{"text":"o","start":7.019,"end":7.039},{"text":"auxílio","start":7.099,"end":7.439},{"text":"acidente?","start":7.46,"end":8.06},{"text":"Em","start":8.199,"end":8.359},{"text":"regra,","start":8.42,"end":8.72},{"text":"não.","start":8.84,"end":9.059},{"text":"Por","start":9.34,"end":9.599},{"text":"quê?","start":9.639,"end":10.039},{"text":"Porque","start":10.099,"end":10.26},{"text":"o","start":10.319,"end":10.34},{"text":"benefício","start":10.38,"end":10.859},{"text":"de","start":10.939,"end":10.979},{"text":"auxílio","start":11.039,"end":11.279},{"text":"acidente,","start":11.319,"end":11.599},{"text":"ele","start":11.659,"end":11.739},{"text":"não","start":11.759,"end":11.84},{"text":"pode","start":11.88,"end":12.019},{"text":"ser","start":12.059,"end":12.14},{"text":"acumulado","start":12.199,"end":12.579},{"text":"com","start":12.639,"end":12.699},{"text":"outro","start":12.739,"end":12.859},{"text":"benefício.","start":12.92,"end":13.559},{"text":"Mas,","start":13.639,"end":14.119},{"text":"pra","start":14.219,"end":14.319},{"text":"quase","start":14.579,"end":14.999},{"text":"todas","start":15.059,"end":15.42},{"text":"as","start":15.479,"end":15.619},{"text":"regras","start":15.619,"end":16},{"text":"existe","start":16.039,"end":16.299},{"text":"uma","start":16.319,"end":16.399},{"text":"exceção.","start":16.399,"end":16.879},{"text":"Vamos","start":17.059,"end":17.26},{"text":"lá.","start":17.319,"end":17.439},{"text":"Vou","start":17.52,"end":17.6},{"text":"explicar","start":17.659,"end":18.02},{"text":"direitinho","start":18.119,"end":18.52},{"text":"aqui","start":18.539,"end":18.659},{"text":"pra","start":18.699,"end":18.779},{"text":"vocês,","start":18.84,"end":19.219},{"text":"hein?","start":19.299,"end":19.519},{"text":"Para","start":19.639,"end":19.76},{"text":"os","start":19.799,"end":19.859},{"text":"aposentados,","start":19.959,"end":20.799},{"text":"né,","start":20.959,"end":21.099},{"text":"se","start":21.26,"end":21.319},{"text":"a","start":22.059,"end":22.079},{"text":"aposentadoria","start":22.119,"end":22.619},{"text":"é","start":22.659,"end":22.68},{"text":"recente,","start":22.719,"end":23.359},{"text":"2025,","start":23.559,"end":24.5},{"text":"ele","start":24.68,"end":24.799},{"text":"tem","start":24.84,"end":24.939},{"text":"direito","start":25.019,"end":25.279},{"text":"a","start":25.299,"end":25.34},{"text":"receber","start":25.379,"end":25.76},{"text":"os","start":25.799,"end":25.879},{"text":"últimos","start":25.959,"end":26.26},{"text":"cinco","start":26.319,"end":26.5},{"text":"anos","start":26.599,"end":26.76},{"text":"que","start":26.859,"end":27},{"text":"não","start":27.059,"end":27.239},{"text":"recebeu,","start":27.279,"end":28.039},{"text":"tá,","start":28.319,"end":28.439},{"text":"do","start":28.5,"end":28.559},{"text":"auxílio.","start":28.619,"end":29.039},{"text":"A","start":29.099,"end":29.159},{"text":"gente","start":29.199,"end":29.34},{"text":"fala","start":29.399,"end":29.539},{"text":"que","start":29.599,"end":29.659},{"text":"são","start":29.679,"end":29.78},{"text":"os","start":29.799,"end":29.859},{"text":"retroativos,","start":29.92,"end":30.779},{"text":"né,","start":30.92,"end":31.039},{"text":"ele","start":31.059,"end":31.159},{"text":"não","start":31.179,"end":31.26},{"text":"vai","start":31.299,"end":31.359},{"text":"ter","start":31.42,"end":31.5},{"text":"direito","start":31.539,"end":31.76},{"text":"a","start":31.76,"end":31.779},{"text":"receber","start":31.819,"end":32.079},{"text":"o","start":32.139,"end":32.159},{"text":"mensal.","start":32.219,"end":32.579},{"text":"Agora,","start":32.739,"end":33.02},{"text":"pra","start":33.119,"end":33.259},{"text":"quem","start":33.299,"end":33.419},{"text":"tá","start":33.52,"end":33.579},{"text":"recebendo","start":33.619,"end":34.239},{"text":"o","start":34.279,"end":34.299},{"text":"auxílio","start":34.38,"end":34.619},{"text":"por","start":34.68,"end":34.739},{"text":"incapacidade","start":34.779,"end":35.34},{"text":"temporária,","start":35.399,"end":35.88},{"text":"que","start":35.959,"end":36},{"text":"é","start":36.02,"end":36.04},{"text":"o","start":36.059,"end":36.079},{"text":"auxílio","start":36.139,"end":36.419},{"text":"doença,","start":36.479,"end":36.86},{"text":"se","start":37.02,"end":37.079},{"text":"não","start":37.139,"end":37.319},{"text":"for","start":37.36,"end":37.579},{"text":"pelo","start":37.659,"end":37.919},{"text":"mesmo","start":37.979,"end":38.279},{"text":"motivo,","start":38.379,"end":38.86},{"text":"olha","start":38.919,"end":39.079},{"text":"que","start":39.139,"end":39.219},{"text":"dica","start":39.259,"end":39.459},{"text":"importante,","start":39.479,"end":39.939},{"text":"que","start":39.959,"end":40.02},{"text":"informação","start":40.04,"end":40.5},{"text":"importante,","start":40.54,"end":41.099},{"text":"hein?","start":41.139,"end":41.259},{"text":"Ele","start":41.459,"end":41.599},{"text":"também","start":41.659,"end":41.979},{"text":"tem","start":42.139,"end":42.379},{"text":"direito","start":42.459,"end":43.039},{"text":"a","start":43.099,"end":43.159},{"text":"receber","start":43.219,"end":44.039},{"text":"o","start":44.119,"end":44.139},{"text":"auxílio","start":44.2,"end":44.479},{"text":"acidente.","start":44.52,"end":45.039},{"text":"Eu","start":45.319,"end":45.419},{"text":"tenho","start":45.459,"end":45.659},{"text":"casos","start":45.739,"end":46.18},{"text":"aqui","start":46.219,"end":46.36},{"text":"no","start":46.399,"end":46.459},{"text":"escritório,","start":46.52,"end":47.04},{"text":"de","start":47.079,"end":47.159},{"text":"pessoas","start":47.2,"end":47.52},{"text":"que","start":47.579,"end":47.659},{"text":"recebem","start":47.7,"end":48.279},{"text":"auxílio","start":48.379,"end":48.86},{"text":"acidente","start":48.899,"end":49.959},{"text":"e","start":50.02,"end":50.059},{"text":"recebe","start":50.119,"end":50.52},{"text":"também","start":50.559,"end":50.779},{"text":"o","start":50.84,"end":50.86},{"text":"auxílio","start":50.899,"end":51.239},{"text":"por","start":51.279,"end":51.36},{"text":"incapacidade","start":51.399,"end":52.039},{"text":"temporária,","start":52.099,"end":53},{"text":"e","start":53.079,"end":53.119},{"text":"outras","start":53.219,"end":53.539},{"text":"pessoas","start":53.599,"end":54.079},{"text":"que","start":54.119,"end":54.399},{"text":"recebem","start":54.439,"end":54.819},{"text":"a","start":54.86,"end":54.879},{"text":"aposentadoria","start":54.919,"end":55.5},{"text":"e","start":55.52,"end":55.579},{"text":"tiveram","start":55.639,"end":56},{"text":"o","start":56,"end":56.02},{"text":"direito","start":56.059,"end":56.36},{"text":"a","start":56.379,"end":56.419},{"text":"receber","start":56.459,"end":57.239},{"text":"os","start":57.319,"end":57.419},{"text":"últimos","start":57.479,"end":57.779},{"text":"cinco","start":57.84,"end":58.039},{"text":"anos","start":58.119,"end":58.259},{"text":"do","start":58.299,"end":58.34},{"text":"auxílio","start":58.399,"end":58.68},{"text":"acidente.","start":58.719,"end":59.34},{"text":"E","start":59.399,"end":59.479},{"text":"para","start":59.539,"end":59.7},{"text":"os","start":59.719,"end":59.799},{"text":"aposentados,","start":59.919,"end":60.799},{"text":"e","start":60.84,"end":60.859},{"text":"aqueles","start":61,"end":61.299},{"text":"que","start":61.34,"end":61.399},{"text":"estão","start":61.439,"end":61.639},{"text":"recebendo","start":61.68,"end":62.239},{"text":"auxílio","start":62.379,"end":62.699},{"text":"por","start":62.739,"end":62.799},{"text":"incapacidade","start":62.859,"end":63.439},{"text":"temporária,","start":63.479,"end":64.339},{"text":"se","start":64.439,"end":64.479},{"text":"tem","start":64.559,"end":64.679},{"text":"alguma","start":64.699,"end":64.9},{"text":"dúvida,","start":65,"end":65.299},{"text":"me","start":65.519,"end":65.599},{"text":"chama","start":65.659,"end":65.799},{"text":"aqui.","start":65.879,"end":66.099}];
+      var BLOCKS = [{"line1":[[0,"n"],[1,"n"],[2,"n"]],"line2":[[3,"n"],[4,"n"]]},{"line1":[[5,"n"],[6,"n"],[7,"n"]],"line2":[[8,"n"],[9,"n"]]},{"line1":[[10,"n"],[11,"n"],[12,"n"],[13,"n"]],"line2":[[14,"e"],[15,"e"]]},{"line1":[[16,"n"],[17,"n"],[18,"n"],[19,"n"]],"line2":[[20,"e"],[21,"e"]]},{"line1":[[22,"n"],[23,"n"],[24,"n"]],"line2":null},{"line1":[[25,"n"],[26,"n"]],"line2":null},{"line1":[[27,"n"],[28,"n"],[29,"n"]],"line2":[[30,"n"],[31,"n"],[32,"n"]]},{"line1":[[33,"n"],[34,"n"],[35,"n"]],"line2":[[36,"n"],[37,"n"]]},{"line1":[[38,"n"]],"line2":[[39,"e"],[40,"e"]]},{"line1":[[41,"n"],[42,"n"],[43,"n"]],"line2":[[44,"n"],[45,"n"],[46,"n"]]},{"line1":[[47,"n"],[48,"n"]],"line2":[[49,"e"]]},{"line1":[[50,"n"],[51,"n"]],"line2":null},{"line1":[[52,"n"],[53,"n"],[54,"n"]],"line2":[[55,"n"],[56,"n"]]},{"line1":[[57,"n"],[58,"n"]],"line2":null},{"line1":[[59,"n"],[60,"n"],[61,"n"]],"line2":null},{"line1":[[62,"n"],[63,"n"]],"line2":null},{"line1":[[64,"n"],[65,"n"]],"line2":[[66,"n"],[67,"n"]]},{"line1":[[68,"n"],[69,"n"],[70,"n"]],"line2":[[71,"n"],[72,"n"],[73,"n"]]},{"line1":[[74,"n"],[75,"n"]],"line2":[[76,"e"],[77,"e"]]},{"line1":[[78,"n"]],"line2":null},{"line1":[[79,"n"],[80,"n"],[81,"n"]],"line2":null},{"line1":[[82,"n"],[83,"n"],[84,"n"]],"line2":[[85,"n"],[86,"n"]]},{"line1":[[87,"n"],[88,"n"],[89,"n"]],"line2":[[90,"e"]]},{"line1":[[91,"n"],[92,"n"],[93,"n"]],"line2":[[94,"n"],[95,"n"]]},{"line1":[[96,"n"],[97,"n"],[98,"n"]],"line2":[[99,"n"],[100,"n"]]},{"line1":[[101,"n"],[102,"n"],[103,"n"]],"line2":[[104,"n"],[105,"n"]]},{"line1":[[106,"n"],[107,"n"],[108,"n"]],"line2":[[109,"n"],[110,"n"]]},{"line1":[[111,"n"],[112,"n"],[113,"n"]],"line2":[[114,"e"],[115,"e"]]},{"line1":[[116,"n"],[117,"n"],[118,"n"]],"line2":[[119,"n"],[120,"n"]]},{"line1":[[121,"n"],[122,"n"],[123,"n"]],"line2":[[124,"n"],[125,"n"]]},{"line1":[[126,"n"],[127,"n"]],"line2":[[128,"n"],[129,"n"]]},{"line1":[[130,"n"],[131,"n"],[132,"n"]],"line2":[[133,"n"],[134,"n"],[135,"n"]]},{"line1":[[136,"n"],[137,"n"],[138,"n"]],"line2":null},{"line1":[[139,"n"],[140,"n"],[141,"n"]],"line2":[[142,"n"],[143,"n"]]},{"line1":[[144,"e"]],"line2":null},{"line1":[[145,"n"],[146,"n"],[147,"n"],[148,"n"]],"line2":null},{"line1":[[149,"n"],[150,"n"],[151,"n"]],"line2":[[152,"n"],[153,"n"]]},{"line1":[[154,"n"],[155,"n"],[156,"n"]],"line2":[[157,"n"],[158,"n"]]},{"line1":[[159,"n"],[160,"n"],[161,"n"]],"line2":[[162,"n"],[163,"n"]]},{"line1":[[164,"n"],[165,"n"],[166,"n"]],"line2":[[167,"n"],[168,"n"],[169,"n"]]},{"line1":[[170,"n"],[171,"n"],[172,"n"]],"line2":[[173,"n"],[174,"n"]]},{"line1":[[175,"n"],[176,"n"]],"line2":[[177,"n"],[178,"n"]]},{"line1":[[179,"n"],[180,"n"]],"line2":[[181,"n"],[182,"n"]]},{"line1":[[183,"n"],[184,"n"],[185,"n"]],"line2":[[186,"n"],[187,"n"]]},{"line1":[[188,"n"],[189,"n"]],"line2":[[190,"n"],[191,"n"]]},{"line1":[[192,"n"],[193,"n"]],"line2":[[194,"n"],[195,"n"]]},{"line1":[[196,"e"],[197,"e"],[198,"e"]],"line2":null}];
+      var CLASS_MAP = { n: "word word--normal", i: "word word--italic", e: "word word--emphasis" };
+      function computeLineSize(pairs) {
+        var hasE = pairs.some(function (p) { return p[1] === "e"; });
+        var t = pairs.map(function (p) { return W[p[0]].text; }).join(" ");
+        return hasE ? fitFontSize(t, 120, "800", "Playfair Display", SAFE_WIDTH) : fitFontSize(t, 60, "400", "Inter", SAFE_WIDTH);
+      }
+      function buildBlocks() {
+        var stage = document.getElementById("caption-stage");
+        BLOCKS.forEach(function (block, bi) {
+          var el = document.createElement("div"); el.className = "caption-block"; el.id = "b" + bi;
+          var l1Size = computeLineSize(block.line1);
+          var l1 = document.createElement("div"); l1.className = "caption-line"; l1.id = "b" + bi + "L1";
+          block.line1.forEach(function (pair, wi) {
+            var span = document.createElement("span"); span.className = CLASS_MAP[pair[1]]; span.id = "b" + bi + "L1w" + wi;
+            span.textContent = W[pair[0]].text; span.style.fontSize = l1Size + "px"; l1.appendChild(span);
+          });
+          el.appendChild(l1);
+          if (block.line2) {
+            var l2Size = computeLineSize(block.line2);
+            var l2 = document.createElement("div"); l2.className = "caption-line"; l2.id = "b" + bi + "L2";
+            block.line2.forEach(function (pair, wi) {
+              var span = document.createElement("span"); span.className = CLASS_MAP[pair[1]]; span.id = "b" + bi + "L2w" + wi;
+              span.textContent = W[pair[0]].text; span.style.fontSize = l2Size + "px"; l2.appendChild(span);
+            });
+            el.appendChild(l2);
+          }
+          stage.appendChild(el);
+        });
+      }
+      buildBlocks();
+      (function fitBlocks() {
+        BLOCKS.forEach(function (block, bi) {
+          var el = document.getElementById("b" + bi);
+          el.style.opacity = "1"; el.style.position = "relative";
+          var lines = el.querySelectorAll(".caption-line"); var maxW = 0;
+          lines.forEach(function (line) { if (line.scrollWidth > maxW) maxW = line.scrollWidth; });
+          if (maxW > SAFE_WIDTH) el.style.transform = "scale(" + SAFE_WIDTH / maxW + ")";
+          el.style.opacity = "0"; el.style.position = "";
+        });
+      })();
+      window.__timelines = window.__timelines || {};
+      var tl = gsap.timeline({ paused: true });
+      var allEls = BLOCKS.map(function (_, i) { return document.getElementById("b" + i); });
+      function blockStart(bi) { return W[BLOCKS[bi].line1[0][0]].start; }
+      BLOCKS.forEach(function (block, bi) {
+        var el = allEls[bi];
+        var start = blockStart(bi);
+        var nextStart = bi < BLOCKS.length - 1 ? blockStart(bi + 1) : DURATION;
+        allEls.forEach(function (other, oi) { if (oi !== bi) tl.set(other, { opacity: 0 }, start); });
+        tl.set(el, { opacity: 1 }, start);
+        block.line1.forEach(function (pair, wi) {
+          var wordEl = document.getElementById("b" + bi + "L1w" + wi);
+          tl.set(wordEl, { opacity: 0, scale: 1.12, transformOrigin: "0% 100%" }, start);
+          tl.to(wordEl, { opacity: 1, scale: 1, duration: ENTRY_DUR, ease: "power2.out" }, W[pair[0]].start);
+        });
+        if (block.line2) {
+          var hasEmphasis = block.line2.some(function (p) { return p[1] === "e"; });
+          var l2El = document.getElementById("b" + bi + "L2");
+          if (hasEmphasis) {
+            tl.set(l2El, { opacity: 0, x: -1080 }, start);
+            tl.to(l2El, { opacity: 1, x: 0, duration: SLIDE_DUR, ease: "power2.out" }, W[block.line2[0][0]].start);
+          } else {
+            tl.set(l2El, { opacity: 1 }, start);
+            block.line2.forEach(function (pair, wi) {
+              var wordEl = document.getElementById("b" + bi + "L2w" + wi);
+              tl.set(wordEl, { opacity: 0, scale: 1.12, transformOrigin: "0% 100%" }, start);
+              tl.to(wordEl, { opacity: 1, scale: 1, duration: ENTRY_DUR, ease: "power2.out" }, W[pair[0]].start);
+            });
+          }
+        }
+        tl.set(el, { opacity: 0 }, nextStart);
+      });
+      // —— elementos glass + count-up ——
+      tl.fromTo("#idcard .card", { opacity: 0, y: -12 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out" }, 0);
+      tl.to("#idcard .card", { opacity: 0, duration: 0.3, ease: "power1.in" }, 4.68);
+      tl.fromTo("#coacum .card", { opacity: 0, y: -12 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out" }, 12.1);
+      tl.to("#coacum .card", { opacity: 0, duration: 0.3, ease: "power1.in" }, 16.38);
+      tl.fromTo("#codica .card", { opacity: 0, y: -12 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out" }, 38.96);
+      tl.to("#codica .card", { opacity: 0, duration: 0.3, ease: "power1.in" }, 43.24);
+      tl.fromTo("#numcard .card", { opacity: 0, y: -12 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out" }, 26.12);
+      tl.to("#numcard .card", { opacity: 0, duration: 0.3, ease: "power1.in" }, 31.80);
+      var _n = { v: 0 };
+      tl.set("#num-val", { textContent: 0 }, 26.12);
+      tl.to(_n, { v: 5, duration: 1.1, ease: "power2.out", onUpdate: function(){ document.getElementById("num-val").textContent = Math.round(_n.v); } }, 26.42);
+      tl.set("#num-val", { textContent: 5 }, 27.72);
+      tl.fromTo("#proof .card", { opacity: 0, y: -12 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out" }, 46.32);
+      tl.to("#proof .card", { opacity: 0, duration: 0.3, ease: "power1.in" }, 49.40);
+      tl.to({}, { duration: DURATION }, 0);
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

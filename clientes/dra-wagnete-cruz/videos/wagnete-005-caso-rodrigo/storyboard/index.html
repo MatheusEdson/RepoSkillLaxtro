@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Storyboard · Dra. Wagnete — [005] Caso Rodrigo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:ital,wght@1,800&display=swap" rel="stylesheet" />
+<style>
+  :root{ --ink:#1a1714; --paper:#f4efe7; --paper2:#ece4d6; --line:#d9cdb8; --amber:#c8881e; --amber-soft:#e9b24c; --green:#3f6b4f; --red:#a8442f; --muted:#7a6f60; --cream:#f5f0d0; }
+  *{ box-sizing:border-box; }
+  body{ margin:0; background:var(--paper); color:var(--ink); font-family:Inter,"Segoe UI",system-ui,Arial,sans-serif; line-height:1.5; }
+  .wrap{ max-width:1180px; margin:0 auto; padding:48px 28px 80px; }
+  header{ border-bottom:2px solid var(--ink); padding-bottom:26px; margin-bottom:30px; }
+  .kick{ font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:var(--amber); font-weight:700; }
+  h1{ font-family:"Playfair Display",Georgia,serif; font-style:italic; font-weight:800; font-size:44px; margin:8px 0 6px; }
+  h1 .r{ font-style:normal; font-family:Inter,sans-serif; font-weight:700; }
+  .sub{ color:var(--muted); font-size:15px; max-width:760px; }
+  .meta{ display:flex; flex-wrap:wrap; gap:10px; margin-top:18px; }
+  .pill{ background:var(--paper2); border:1px solid var(--line); border-radius:999px; padding:6px 14px; font-size:12.5px; font-weight:600; }
+  .pill b{ color:var(--amber); }
+  h2{ font-family:"Playfair Display",Georgia,serif; font-style:italic; font-size:25px; font-weight:800; margin:42px 0 16px; display:flex; align-items:center; gap:12px; }
+  h2 .n{ font-size:13px; color:#fff; background:var(--ink); border-radius:6px; padding:3px 9px; font-family:Inter,sans-serif; font-style:normal; }
+  .banner{ background:#fff; border:1px solid var(--line); border-left:4px solid var(--amber); border-radius:10px; padding:16px 18px; font-size:14px; margin-bottom:8px; }
+  .banner b{ color:var(--amber); }
+  .cuts{ background:#fff; border:1px solid var(--line); border-radius:10px; padding:14px 18px; font-size:13.5px; }
+  .cuts code{ background:var(--paper2); border:1px solid var(--line); border-radius:4px; padding:1px 6px; font-family:Consolas,monospace; font-size:12px; color:var(--red); }
+  .scenes{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .scene{ background:#fff; border:1px solid var(--line); border-radius:14px; overflow:hidden; display:flex; flex-direction:column; }
+  .frame{ position:relative; aspect-ratio:9/16; background:#000 center/cover no-repeat; }
+  .frame .tc{ position:absolute; top:10px; left:10px; background:rgba(0,0,0,.66); color:#fff; font-size:11px; font-weight:700; padding:3px 9px; border-radius:6px; z-index:5; }
+  .frame .beat{ position:absolute; top:10px; right:10px; background:var(--ink); color:#fff; font-size:10px; font-weight:800; padding:3px 8px; border-radius:6px; text-transform:uppercase; letter-spacing:.05em; z-index:5; }
+  /* zoom/push-in indicator */
+  .zoom{ position:absolute; inset:0; z-index:3; pointer-events:none; display:flex; align-items:center; justify-content:center; }
+  .zoom .box{ border:2px dashed rgba(255,255,255,.85); border-radius:6px; box-shadow:0 0 0 9999px rgba(0,0,0,.12) inset; }
+  .zoom.soft .box{ width:80%; height:80%; } .zoom.strong .box{ width:62%; height:62%; }
+  .zoom .zlbl{ position:absolute; bottom:14%; right:8%; background:var(--amber); color:#fff; font-size:11px; font-weight:800; padding:3px 9px; border-radius:6px; letter-spacing:.04em; }
+  /* glass element mock (esquerda, acima da legenda) */
+  .el{ position:absolute; left:7%; bottom:48%; max-width:80%; z-index:6; background:rgba(245,240,208,.16); -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,.5); box-shadow:0 8px 22px rgba(0,0,0,.34); color:#fff; border-radius:13px; padding:9px 13px; font-size:12px; font-weight:600; }
+  .el .ic{ color:#f0c970; } .el small{ display:block; color:rgba(255,255,255,.8); font-weight:600; font-size:10px; margin-top:1px; }
+  .el .arrow{ color:var(--amber-soft); }
+  /* legenda editorial mock */
+  .cap{ position:absolute; left:7%; right:13%; bottom:13%; z-index:4; text-align:left; }
+  .cap .nrm{ display:block; color:var(--cream); font-size:14px; font-weight:400; text-shadow:0 2px 10px rgba(0,0,0,.7); }
+  .cap .em{ display:block; color:var(--cream); font-family:"Playfair Display",Georgia,serif; font-style:italic; font-weight:800; font-size:40px; line-height:.92; margin-top:3px; text-shadow:0 2px 12px rgba(0,0,0,.7); }
+  .cap .em.sm{ font-size:30px; }
+  .sfx{ position:absolute; bottom:8px; right:8px; z-index:6; background:rgba(0,0,0,.6); color:#ffd98a; font-size:10px; font-weight:700; padding:3px 7px; border-radius:5px; }
+  .note{ padding:13px 15px 16px; }
+  .note .q{ color:var(--muted); font-style:italic; font-size:13px; margin-bottom:9px; }
+  .tag{ display:inline-flex; align-items:center; gap:6px; font-size:11px; font-weight:700; background:var(--paper2); border:1px solid var(--line); border-radius:6px; padding:3px 8px; margin:0 5px 5px 0; }
+  .tag .sw{ width:8px; height:8px; border-radius:2px; }
+  table{ width:100%; border-collapse:collapse; background:#fff; border:1px solid var(--line); border-radius:12px; overflow:hidden; }
+  th,td{ text-align:left; padding:11px 14px; border-bottom:1px solid var(--line); font-size:13px; vertical-align:top; }
+  th{ background:var(--ink); color:#fff; font-size:11px; letter-spacing:.07em; text-transform:uppercase; }
+  tr:last-child td{ border-bottom:none; }
+  td code{ background:var(--paper2); border:1px solid var(--line); border-radius:4px; padding:1px 6px; font-family:Consolas,monospace; font-size:11.5px; }
+  .new{ display:inline-block; font-size:9px; font-weight:800; background:#d9e7df; color:#2c5640; border-radius:4px; padding:1px 6px; text-transform:uppercase; margin-left:4px; }
+  footer{ margin-top:50px; border-top:1px solid var(--line); padding-top:18px; color:var(--muted); font-size:12px; }
+  @media(max-width:880px){ .scenes{ grid-template-columns:repeat(2,1fr); } }
+  @media(max-width:560px){ .scenes{ grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="kick">Laxtro · Storyboard de Vídeo · Confidencial</div>
+    <h1>Dra. Wagnete — <span class="r">·</span> Caso Rodrigo</h1>
+    <div class="sub">Plano do vídeo <b>[005] - Caso Rodrigo</b> (narrativo, 9:16). História real: um cliente que veio
+      <i>só pra acompanhar a esposa</i> e saiu com o <b>auxílio-acidente</b>. Dinâmica <b>superior</b> ao último vídeo:
+      cortes mais secos, <b>push-ins</b> nos beats de tensão, <b>card de personagem</b>, e um <b>zoom in no hook final</b>.</div>
+    <div class="meta">
+      <span class="pill">Formato <b>9:16</b></span>
+      <span class="pill">Origem <b>62s</b> → corte <b>~52s</b></span>
+      <span class="pill">Legenda <b>caption-editorial-emphasis</b></span>
+      <span class="pill">Hook final <b>zoom in</b></span>
+      <span class="pill">SFX <b>por elemento</b></span>
+    </div>
+  </header>
+
+  <div class="banner"><b>↑ Dinâmica superior (o que muda vs o último vídeo):</b> 1) corte seco das refações = ritmo mais rápido ·
+    2) <b>push-in</b> (Ken Burns) nos beats de tensão (cicatriz, ataque) e no payoff · 3) <b>card de personagem "Rodrigo"</b> (elemento novo) ·
+    4) <b>zoom in lento no hook final</b> fechando na CTA · 5) SFX marcando cada entrada.</div>
+
+  <h2><span class="n">A</span> Corte de silêncios & refações</h2>
+  <div class="cuts">
+    Removidos (snap em fronteira de palavra, pad 50–80ms): <code>"É..."</code> <code>"É--"</code> <code>"E o Rodrigo--"</code>
+    <code>"E ele me ex--"</code> <code>"que o--"</code> <code>"Qual que é a sua atividade--"</code> (mantém "qual que <i>era</i>") <code>"ele saiu daqui--"</code>
+    + silêncios ≥0.4s tightened. <b>O hook final (54.9s→62.3s) NÃO é cortado</b> — toca contínuo pro zoom. Resultado ~52s.
+  </div>
+
+  <h2><span class="n">B</span> Storyboard cena a cena</h2>
+  <div class="scenes">
+
+    <!-- 1 -->
+    <div class="scene">
+      <div class="frame" style="background-image:url('frames/f1.jpg')">
+        <span class="tc">abre</span><span class="beat">Gancho</span>
+        <div class="zoom soft"><div class="box"></div><span class="zlbl">⤢ push-in lento</span></div>
+        <div class="el"><span class="ic">●</span> <b>Dra. Wagnete Cruz</b><small>Advogada Previdenciária · OAB/MG</small></div>
+        <div class="cap"><span class="nrm">Eu vou te contar uma</span><span class="em">história.</span></div>
+        <div class="sfx">♪ pop</div>
+      </div>
+      <div class="note">
+        <div class="q">"Eu vou te contar uma história."</div>
+        <span class="tag"><span class="sw" style="background:#473e8a"></span>Lower-third id</span>
+        <span class="tag"><span class="sw" style="background:var(--amber)"></span>push-in sutil abre a história</span>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="scene">
+      <div class="frame" style="background-image:url('frames/f2.jpg')">
+        <span class="tc">~05s</span><span class="beat">Setup</span>
+        <div class="cap"><span class="nrm">um cliente veio só pra</span><span class="em sm">acompanhar a esposa</span></div>
+      </div>
+      <div class="note">
+        <div class="q">"Um cliente veio aqui no escritório, mas só pra acompanhar a esposa."</div>
+        <span class="tag"><span class="sw" style="background:var(--amber)"></span>"acompanhar a esposa" → ênfase (planta a virada)</span>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="scene">
+      <div class="frame" style="background-image:url('frames/f3.jpg')">
+        <span class="tc">~12s</span><span class="beat">Personagem</span>
+        <div class="el"><b>Rodrigo</b><small>músico</small></div>
+        <div class="cap"><span class="nrm">O Rodrigo é</span><span class="em">músico.</span></div>
+        <div class="sfx">♪ pop</div>
+      </div>
+      <div class="note">
+        <div class="q">"O Rodrigo. O Rodrigo é músico."</div>
+        <span class="tag"><span class="sw" style="background:var(--green)"></span>Card de personagem <span class="new">novo</span></span>
+        <span class="tag"><span class="sw" style="background:var(--amber)"></span>"músico" → ênfase</span>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="scene">
+      <div class="frame" style="background-image:url('frames/f4.jpg')">
+        <span class="tc">~18s</span><span class="beat">Tensão</span>
+        <div class="zoom soft"><div class="box"></div><span class="zlbl">⤢ micro push-in</span></div>
+        <div class="el"><span class="ic">⌖</span> cicatriz no braço</div>
+        <div class="cap"><span class="nrm">eu vi uma</span><span class="em sm">cicatriz no braço</span></div>
+        <div class="sfx">♪ pop</div>
+      </div>
+      <div class="note">
+        <div class="q">"Quando o Rodrigo chegou, eu vi que tinha uma cicatriz no braço dele."</div>
+        <span class="tag"><span class="sw" style="background:var(--red)"></span>Callout de tensão</span>
+        <span class="tag"><span class="sw" style="background:var(--amber)"></span>micro push-in (suspense)</span>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="scene">
+      <div class="frame" style="background-image:url('frames/f5.jpg')">
+        <span class="tc">~27s</span><span class="beat">Revelação</span>
+        <div class="el"><span class="ic">⚠</span> atacado por um animal</div>
+        <div class="cap"><span class="nrm">ele foi</span><span class="em sm">atacado por um animal</span></div>
+        <div class="sfx">♪ pop</div>
+      </div>
+      <div class="note">
+        <div class="q">"Eu fui atacado por um animal. Já faz muito tempo, doutora."</div>
+        <span class="tag"><span class="sw" style="background:var(--red)"></span>Callout dramático</span>
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="scene">
+      <div class="frame" style="background-image:url('frames/f6.jpg')">
+        <span class="tc">~37s</span><span class="beat">Contexto</span>
+        <div class="cap"><span class="nrm">qual que era a sua atividade?</span><span class="em">músico</span></div>
+      </div>
+      <div class="note">
+        <div class="q">"Qual que era a sua atividade? Músico — era e ainda continua sendo."</div>
+        <span class="tag"><span class="sw" style="background:var(--amber)"></span>"músico" → ênfase (liga à limitação)</span>
+      </div>
+    </div>
+
+    <!-- 7 -->
+    <div class="scene">
+      <div class="frame" style="background-image:url('frames/f7.jpg')">
+        <span class="tc">~44s</span><span class="beat">Consequência</span>
+        <div class="cap"><span class="nrm">ele ficou com uma</span><span class="em">limitação.</span></div>
+      </div>
+      <div class="note">
+        <div class="q">"Em decorrência dessa lesão, ele ficou com uma limitação."</div>
+        <span class="tag"><span class="sw" style="background:var(--amber)"></span>"limitação" → ênfase</span>
+      </div>
+    </div>
+
+    <!-- 8 -->
+    <div class="scene">
+      <div class="frame" style="background-image:url('frames/f8.jpg')">
+        <span class="tc">~50s</span><span class="beat">Payoff</span>
+        <div class="zoom soft"><div class="box"></div><span class="zlbl">⤢ push-in</span></div>
+        <div class="el">veio <span class="arrow">→</span> acompanhar a esposa<small>saiu com o auxílio-acidente</small></div>
+        <div class="cap"><span class="nrm">saiu daqui com o</span><span class="em sm">auxílio-acidente</span></div>
+        <div class="sfx">♪ pop</div>
+      </div>
+      <div class="note">
+        <div class="q">"Ele veio acompanhando a esposa e saiu daqui com o auxílio-acidente."</div>
+        <span class="tag"><span class="sw" style="background:var(--green)"></span>Card de payoff (a virada)</span>
+        <span class="tag"><span class="sw" style="background:var(--amber)"></span>push-in reforça o clímax</span>
+      </div>
+    </div>
+
+    <!-- 9 -->
+    <div class="scene">
+      <div class="frame" style="background-image:url('frames/f9.jpg')">
+        <span class="tc">54.9→62.3</span><span class="beat" style="background:var(--amber)">Hook · zoom</span>
+        <div class="zoom strong"><div class="box"></div><span class="zlbl">⤢⤢ ZOOM IN (sem cortes)</span></div>
+        <div class="cap"><span class="nrm">se você se identificou…</span><span class="em sm">entre em contato</span></div>
+        <div class="sfx">♪ whoosh</div>
+      </div>
+      <div class="note">
+        <div class="q">"Se você se identificou com essa história, se você sofreu um acidente e quer saber mais sobre o auxílio-acidente, entre em contato comigo."</div>
+        <span class="tag"><span class="sw" style="background:var(--amber)"></span><b>ZOOM IN lento</b> fechando até a frase final</span>
+        <span class="tag"><span class="sw" style="background:var(--muted)"></span>trecho contínuo, sem cortes</span>
+      </div>
+    </div>
+
+  </div>
+
+  <h2><span class="n">C</span> Elementos, SFX & movimento (formato fixo + novidades)</h2>
+  <table>
+    <tr><th>Gatilho</th><th>Elemento / Movimento</th><th>SFX</th></tr>
+    <tr><td>Corpo da fala</td><td>Legenda editorial-emphasis (creme, termo em Playfair itálico)</td><td>—</td></tr>
+    <tr><td>Abertura</td><td>Lower-third de identificação (glass, esquerda acima da legenda)</td><td>pop</td></tr>
+    <tr><td>Apresenta o Rodrigo</td><td><b>Card de personagem</b> "Rodrigo · músico" <span class="new">novo</span></td><td>pop</td></tr>
+    <tr><td>Cicatriz / ataque (tensão)</td><td>Callout glass + <b>micro push-in</b> de suspense</td><td>pop</td></tr>
+    <tr><td>Payoff (saiu com o benefício)</td><td>Card de virada "veio acompanhar → saiu com auxílio-acidente" + <b>push-in</b></td><td>pop</td></tr>
+    <tr><td>Hook final (54.9–62.3s)</td><td><b>ZOOM IN lento, sem cortes</b>, fechando na CTA</td><td>whoosh suave</td></tr>
+  </table>
+  <p class="sub" style="margin-top:12px">Travas mantidas: glass creme/branco, à esquerda acima da legenda com gap proporcional, nunca sobre o rosto;
+    SFX audível; sem promessa de resultado, sem identidades neon/glitch; números/fatos reais.</p>
+
+  <footer>Laxtro · Storyboard <code>laxtro-video</code> · frames reais do [005] Caso Rodrigo · legendas/elementos/zoom são <b>mock do plano</b>, não o render final.</footer>
+</div>
+</body>
+</html>

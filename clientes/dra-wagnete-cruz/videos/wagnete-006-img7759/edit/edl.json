@@ -1,0 +1,73 @@
+{
+  "version": 1,
+  "sources": {
+    "R": "C:/Users/josep/.gemini/antigravity-ide/scratch/RepoSkillLaxtro/clientes/dra-wagnete-cruz/videos/wagnete-006-img7759/source.mov"
+  },
+  "ranges": [
+    {
+      "source": "R",
+      "start": 2.809,
+      "end": 12.979,
+      "beat": "seg",
+      "quote": "Bom, eu vou te passar algumas informações que vão te a"
+    },
+    {
+      "source": "R",
+      "start": 14.37,
+      "end": 15.559,
+      "beat": "seg",
+      "quote": "primeiro, né,"
+    },
+    {
+      "source": "R",
+      "start": 16.47,
+      "end": 25.34,
+      "beat": "seg",
+      "quote": "quando você sofreu esse acidente, você estava trabalha"
+    },
+    {
+      "source": "R",
+      "start": 25.989,
+      "end": 36.839,
+      "beat": "seg",
+      "quote": "Ou tinha pouco tempo que você deixou de pagar o INSS, "
+    },
+    {
+      "source": "R",
+      "start": 37.749,
+      "end": 46.159,
+      "beat": "seg",
+      "quote": "você ficou com limitação, né? A limitação, ela tem que"
+    },
+    {
+      "source": "R",
+      "start": 46.829,
+      "end": 53.859,
+      "beat": "seg",
+      "quote": "é atendente e teve uma fratura, foi na perna, né, fica"
+    },
+    {
+      "source": "R",
+      "start": 55.79,
+      "end": 69.239,
+      "beat": "seg",
+      "quote": "você tem documentos? Tá, os documentos da época do aci"
+    },
+    {
+      "source": "R",
+      "start": 69.789,
+      "end": 71.399,
+      "beat": "seg",
+      "quote": "no hospital, né?"
+    },
+    {
+      "source": "R",
+      "start": 72.139,
+      "end": 80.44,
+      "beat": "seg",
+      "quote": "ou seja, no local aonde você foi atendido. Então, viu "
+    }
+  ],
+  "grade": "none",
+  "total_duration_s": 69.88
+}

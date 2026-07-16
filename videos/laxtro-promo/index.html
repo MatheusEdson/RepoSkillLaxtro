@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face {
+        font-family: "Geist";
+        src: url("capture/assets/fonts/53b9e256198e5412-s.0-wfv7uh4i7h9.woff2") format("woff2");
+        font-weight: 100 900;
+        font-style: normal;
+        font-display: block;
+      }
+      @font-face {
+        font-family: "Geist Mono";
+        src: url("capture/assets/fonts/4fa387ec64143e14-s.0.qu-9752pffj.woff2") format("woff2");
+        font-weight: 100 900;
+        font-style: normal;
+        font-display: block;
+      }
+
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body {
+        margin: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #000000;
+      }
+      body {
+        font-family: "Geist", system-ui, sans-serif;
+        color: #ffffff;
+        -webkit-font-smoothing: antialiased;
+      }
+      .mono {
+        font-family: "Geist Mono", ui-monospace, monospace;
+        text-transform: uppercase;
+        letter-spacing: 0.22em;
+        color: #8f8f8f;
+        font-weight: 500;
+      }
+      .scene {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        padding: 120px 160px;
+        box-sizing: border-box;
+        text-align: center;
+      }
+      .kicker { font-size: 19px; }
+      .mask { overflow: hidden; display: inline-block; padding: 0 0.08em; }
+      .hair { background: rgba(255,255,255,0.85); height: 1px; }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="30"
+      data-width="1920"
+      data-height="1080"
+      style="position: relative; width: 1920px; height: 1080px; overflow: hidden; background: #000000;"
+    >
+      <!-- ============ PERSISTENT CHROME (track 0, full 30s) ============ -->
+      <div id="chrome" class="clip" data-start="0" data-duration="30" data-track-index="0"
+           style="position:absolute; inset:0; pointer-events:none;">
+        <!-- top progress hairline -->
+        <div style="position:absolute; top:0; left:0; right:0; height:2px; background:rgba(255,255,255,0.07);">
+          <div id="progress" style="position:absolute; top:0; left:0; height:2px; width:100%; background:rgba(255,255,255,0.7); transform:scaleX(0); transform-origin:left center;"></div>
+        </div>
+        <!-- corner wordmark -->
+        <div id="wm-tl" class="mono" style="position:absolute; top:54px; left:64px; font-size:14px; letter-spacing:0.3em; color:#7a7a7a;">LAXTRO</div>
+        <div id="wm-br" class="mono" style="position:absolute; bottom:52px; right:64px; font-size:13px; color:#5c5c5c;">laxtro.com.br</div>
+      </div>
+
+      <!-- ============ SCENE 1 — COLD OPEN (0 - 4.5) ============ -->
+      <section id="s1" class="scene clip" data-start="0" data-duration="4.5" data-track-index="1">
+        <div style="display:flex; flex-direction:column; align-items:center; gap:34px;">
+          <div id="s1-kicker" class="mono kicker">Ciclo Jun — Jul · 2026 · 1 vaga</div>
+          <div style="display:flex; align-items:baseline; justify-content:center; line-height:1.2;">
+            <span id="s1-logo" style="display:inline-block; font-size:230px; font-weight:560; letter-spacing:-0.045em; line-height:1.2;">Laxtro</span><span id="s1-dot" style="display:inline-block; font-size:230px; font-weight:560; line-height:1.2;">.</span>
+          </div>
+          <div id="s1-rule" class="hair" style="width:520px; transform:scaleX(0); transform-origin:center;"></div>
+          <div id="s1-sub" class="mono" style="font-size:17px; color:#8a8a8a; letter-spacing:0.28em;">Consultoria Impulsionadora de Perfil</div>
+        </div>
+      </section>
+
+      <!-- ============ SCENE 2 — POSITIONING (4.5 - 9.5) ============ -->
+      <section id="s2" class="scene clip" data-start="4.5" data-duration="5" data-track-index="1">
+        <div style="display:flex; flex-direction:column; align-items:center; gap:18px;">
+          <div id="s2-kicker" class="mono kicker" style="margin-bottom:26px;">O Co-Piloto</div>
+          <div style="position:relative; display:inline-block;">
+            <span id="s2-l1" style="display:inline-block; font-size:118px; font-weight:540; letter-spacing:-0.035em; color:#ffffff;">Não é agência.</span>
+            <div id="s2-strike" class="hair" style="position:absolute; left:-4px; right:-4px; top:53%; transform:scaleX(0); transform-origin:left center; background:rgba(255,255,255,0.55);"></div>
+          </div>
+          <span id="s2-l2" style="display:inline-block; font-size:140px; font-weight:600; letter-spacing:-0.04em; color:#ffffff;">É co-piloto.</span>
+        </div>
+      </section>
+
+      <!-- ============ SCENE 3 — CONCEPT (9.5 - 14.5) ============ -->
+      <section id="s3" class="scene clip" data-start="9.5" data-duration="5" data-track-index="1">
+        <div style="display:flex; flex-direction:column; align-items:center; gap:40px; max-width:1360px;">
+          <div id="s3-kicker" class="mono kicker">O Conceito</div>
+          <h2 id="s3-h" style="font-size:104px; font-weight:560; letter-spacing:-0.04em; line-height:1.04;">A diferença que muda tudo.</h2>
+          <p id="s3-sub" style="font-size:34px; font-weight:380; line-height:1.45; color:#9a9a9a; max-width:1080px;">Transformamos autoridade latente em presença de mercado <span style="color:#fff; font-weight:500;">mensurável</span>.</p>
+        </div>
+      </section>
+
+      <!-- ============ SCENE 4 — THE SYSTEM / PIPELINE (14.5 - 22.5) ============ -->
+      <section id="s4" class="scene clip" data-start="14.5" data-duration="8" data-track-index="1">
+        <div style="display:flex; flex-direction:column; align-items:center; gap:64px; width:100%;">
+          <div style="display:flex; flex-direction:column; align-items:center; gap:18px;">
+            <div id="s4-kicker" class="mono kicker">O Sistema — Pipeline Editorial</div>
+            <h2 id="s4-h" style="font-size:64px; font-weight:540; letter-spacing:-0.035em;">De ponta a ponta.</h2>
+          </div>
+          <div id="s4-row" style="display:flex; align-items:center; justify-content:center; gap:22px;">
+            <div class="s4-step" style="display:flex; flex-direction:column; align-items:center; gap:14px;">
+              <div class="mono" style="font-size:13px; color:#8f8f8f;">01</div>
+              <div class="s4-pill" style="padding:20px 34px; border:1px solid rgba(255,255,255,0.24); border-radius:999px; font-size:27px; font-weight:500; white-space:nowrap;">DNA</div>
+            </div>
+            <div class="s4-arrow mono" style="font-size:26px; color:#7a7a7a; font-family:'Geist Mono';">→</div>
+            <div class="s4-step" style="display:flex; flex-direction:column; align-items:center; gap:14px;">
+              <div class="mono" style="font-size:13px; color:#8f8f8f;">02</div>
+              <div class="s4-pill" style="padding:20px 34px; border:1px solid rgba(255,255,255,0.24); border-radius:999px; font-size:27px; font-weight:500; white-space:nowrap;">Trends</div>
+            </div>
+            <div class="s4-arrow mono" style="font-size:26px; color:#7a7a7a; font-family:'Geist Mono';">→</div>
+            <div class="s4-step" style="display:flex; flex-direction:column; align-items:center; gap:14px;">
+              <div class="mono" style="font-size:13px; color:#8f8f8f;">03</div>
+              <div class="s4-pill" style="padding:20px 34px; border:1px solid rgba(255,255,255,0.24); border-radius:999px; font-size:27px; font-weight:500; white-space:nowrap;">Pauta</div>
+            </div>
+            <div class="s4-arrow mono" style="font-size:26px; color:#7a7a7a; font-family:'Geist Mono';">→</div>
+            <div class="s4-step" style="display:flex; flex-direction:column; align-items:center; gap:14px;">
+              <div class="mono" style="font-size:13px; color:#8f8f8f;">04</div>
+              <div class="s4-pill" style="padding:20px 34px; border:1px solid rgba(255,255,255,0.24); border-radius:999px; font-size:27px; font-weight:500; white-space:nowrap;">Roteiro</div>
+            </div>
+            <div class="s4-arrow mono" style="font-size:26px; color:#7a7a7a; font-family:'Geist Mono';">→</div>
+            <div class="s4-step" style="display:flex; flex-direction:column; align-items:center; gap:14px;">
+              <div class="mono" style="font-size:13px; color:#8f8f8f;">05</div>
+              <div class="s4-pill" style="padding:20px 34px; border:1px solid #ffffff; border-radius:999px; font-size:27px; font-weight:600; white-space:nowrap; background:#ffffff; color:#000000;">Content Day</div>
+            </div>
+          </div>
+          <p id="s4-foot" style="font-size:23px; color:#8a8a8a; font-weight:380;">Cada etapa construída sobre a anterior. Mês a mês.</p>
+        </div>
+      </section>
+
+      <!-- ============ SCENE 5 — PROOF / STATS (22.5 - 26.5) ============ -->
+      <section id="s5" class="scene clip" data-start="22.5" data-duration="4" data-track-index="1">
+        <div style="display:flex; align-items:flex-start; justify-content:center; gap:130px;">
+          <div class="s5-stat" style="display:flex; flex-direction:column; align-items:center; gap:18px;">
+            <div id="s5-n1" style="font-size:150px; font-weight:580; letter-spacing:-0.04em; line-height:1;">0</div>
+            <div class="mono" style="font-size:15px; color:#8a8a8a;">Clientes ativos</div>
+          </div>
+          <div class="s5-stat" style="display:flex; flex-direction:column; align-items:center; gap:18px;">
+            <div id="s5-n2" style="font-size:150px; font-weight:580; letter-spacing:-0.04em; line-height:1;">0</div>
+            <div class="mono" style="font-size:15px; color:#8a8a8a;">Etapas no sistema</div>
+          </div>
+          <div class="s5-stat" style="display:flex; flex-direction:column; align-items:center; gap:18px;">
+            <div id="s5-n3" style="font-size:150px; font-weight:580; letter-spacing:-0.04em; line-height:1;">0</div>
+            <div class="mono" style="font-size:15px; color:#8a8a8a;">Vaga · ciclo Jun/Jul</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ SCENE 6 — CTA CLOSE (26.5 - 30) ============ -->
+      <section id="s6" class="scene clip" data-start="26.5" data-duration="3.5" data-track-index="1">
+        <div style="display:flex; flex-direction:column; align-items:center; gap:46px;">
+          <div style="display:flex; align-items:baseline; justify-content:center; line-height:1.2;">
+            <span id="s6-logo" style="display:inline-block; font-size:108px; font-weight:560; letter-spacing:-0.045em; line-height:1.2;">Laxtro</span><span id="s6-dot" style="display:inline-block; font-size:108px; font-weight:560; line-height:1.2;">.</span>
+          </div>
+          <div style="position:relative; display:inline-flex;">
+            <div id="s6-ring" style="position:absolute; inset:-12px; border:2px dashed rgba(255,255,255,0.5); border-radius:999px; transform:scale(0.92);"></div>
+            <div id="s6-btn" style="padding:24px 52px; background:#ffffff; color:#000000; border-radius:999px; font-size:30px; font-weight:560; letter-spacing:-0.01em; white-space:nowrap;">Solicitar avaliação editorial</div>
+          </div>
+          <div id="s6-url" class="mono" style="font-size:16px; color:#7a7a7a; letter-spacing:0.26em;">laxtro.com.br · Lista fechada</div>
+        </div>
+      </section>
+
+      <!-- ============ AUDIO (track 10) ============ -->
+      <audio id="bgm" src="capture/assets/bgm_keynote.mp3" data-start="0" data-duration="30" data-track-index="10" data-volume="0.85"></audio>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      const EASE = "expo.out";
+
+      // ---------- persistent chrome ----------
+      tl.to("#progress", { scaleX: 1, ease: "none", duration: 30 }, 0);
+      tl.fromTo("#wm-tl", { opacity: 0 }, { opacity: 1, duration: 0.8 }, 0.2);
+      tl.fromTo("#wm-br", { opacity: 0 }, { opacity: 1, duration: 0.8 }, 0.4);
+
+      // ---------- SCENE 1 (0 - 4.5) ----------
+      tl.fromTo("#s1-kicker", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.9, ease: EASE }, 0.3);
+      tl.fromTo("#s1-logo", { opacity: 0, y: 80 }, { opacity: 1, y: 0, duration: 1.15, ease: EASE }, 0.55);
+      tl.fromTo("#s1-dot", { opacity: 0, scale: 0, transformOrigin: "50% 80%" }, { opacity: 1, scale: 1, duration: 0.7, ease: "back.out(2.4)" }, 1.5);
+      tl.fromTo("#s1-rule", { scaleX: 0 }, { scaleX: 1, duration: 1.0, ease: EASE }, 1.35);
+      tl.fromTo("#s1-sub", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.9, ease: EASE }, 1.95);
+      tl.set("#s1", { opacity: 1 }, 0);
+      tl.to("#s1", { opacity: 0, duration: 0.45, ease: "power2.in" }, 4.1);
+      tl.set("#s1", { opacity: 0 }, 4.5);
+
+      // ---------- SCENE 2 (4.5 - 9.5) ----------
+      tl.fromTo("#s2-kicker", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.8, ease: EASE }, 4.7);
+      tl.fromTo("#s2-l1", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.9, ease: EASE }, 4.85);
+      tl.fromTo("#s2-strike", { scaleX: 0 }, { scaleX: 1, duration: 0.55, ease: "power3.inOut" }, 6.5);
+      tl.to("#s2-l1", { color: "#5c5c5c", duration: 0.5 }, 6.55);
+      tl.fromTo("#s2-l2", { opacity: 0, y: 48 }, { opacity: 1, y: 0, duration: 0.95, ease: EASE }, 6.7);
+      tl.set("#s2", { opacity: 1 }, 4.5);
+      tl.to("#s2", { opacity: 0, duration: 0.45, ease: "power2.in" }, 9.1);
+      tl.set("#s2", { opacity: 0 }, 9.5);
+
+      // ---------- SCENE 3 (9.5 - 14.5) ----------
+      tl.fromTo("#s3-kicker", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.8, ease: EASE }, 9.8);
+      tl.fromTo("#s3-h", { opacity: 0, y: 44 }, { opacity: 1, y: 0, duration: 1.05, ease: EASE }, 9.95);
+      tl.fromTo("#s3-sub", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.95, ease: EASE }, 10.7);
+      tl.set("#s3", { opacity: 1 }, 9.5);
+      tl.to("#s3", { opacity: 0, duration: 0.45, ease: "power2.in" }, 14.1);
+      tl.set("#s3", { opacity: 0 }, 14.5);
+
+      // ---------- SCENE 4 (14.5 - 22.5) ----------
+      tl.fromTo("#s4-kicker", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.8, ease: EASE }, 14.8);
+      tl.fromTo("#s4-h", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.9, ease: EASE }, 15.0);
+      tl.fromTo(".s4-step", { opacity: 0, scale: 0.88, y: 18 }, { opacity: 1, scale: 1, y: 0, duration: 0.7, ease: "back.out(1.5)", stagger: 0.42 }, 15.6);
+      tl.fromTo(".s4-arrow", { opacity: 0 }, { opacity: 1, duration: 0.4, stagger: 0.42 }, 15.95);
+      tl.fromTo("#s4-foot", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.9, ease: EASE }, 18.6);
+      tl.set("#s4", { opacity: 1 }, 14.5);
+      tl.to("#s4", { opacity: 0, duration: 0.5, ease: "power2.in" }, 22.0);
+      tl.set("#s4", { opacity: 0 }, 22.5);
+
+      // ---------- SCENE 5 (22.5 - 26.5) ----------
+      const c1 = { v: 0 }, c2 = { v: 0 }, c3 = { v: 0 };
+      const pad = (n) => String(Math.round(n)).padStart(2, "0");
+      tl.fromTo(".s5-stat", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.7, ease: EASE, stagger: 0.16 }, 22.7);
+      tl.to(c1, { v: 12, duration: 1.3, ease: "power2.out", onUpdate: () => { document.getElementById("s5-n1").textContent = pad(c1.v); } }, 22.9);
+      tl.to(c2, { v: 5, duration: 1.3, ease: "power2.out", onUpdate: () => { document.getElementById("s5-n2").textContent = pad(c2.v); } }, 23.0);
+      tl.to(c3, { v: 1, duration: 1.3, ease: "power2.out", onUpdate: () => { document.getElementById("s5-n3").textContent = pad(c3.v); } }, 23.1);
+      tl.set("#s5", { opacity: 1 }, 22.5);
+      tl.to("#s5", { opacity: 0, duration: 0.45, ease: "power2.in" }, 26.1);
+      tl.set("#s5", { opacity: 0 }, 26.5);
+
+      // ---------- SCENE 6 (26.5 - 30) ----------
+      tl.fromTo("#s6-logo", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.85, ease: EASE }, 26.7);
+      tl.fromTo("#s6-dot", { opacity: 0, scale: 0, transformOrigin: "50% 80%" }, { opacity: 1, scale: 1, duration: 0.6, ease: "back.out(2.4)" }, 27.1);
+      tl.fromTo("#s6-btn", { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.8, ease: EASE }, 27.2);
+      tl.fromTo("#s6-ring", { opacity: 0, scale: 1.12 }, { opacity: 1, scale: 1, duration: 0.7, ease: "power2.out" }, 27.7);
+      tl.fromTo("#s6-url", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.8, ease: EASE }, 28.0);
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

@@ -1,0 +1,171 @@
+{
+  "typography": [
+    {
+      "role": "display",
+      "fontFamily": "Geist",
+      "fontSize": "88px",
+      "fontWeight": "600",
+      "lineHeight": "88px",
+      "letterSpacing": "-3.52px",
+      "color": "#FFFFFF",
+      "sampleText": "Laxtro."
+    },
+    {
+      "role": "heading",
+      "fontFamily": "Geist",
+      "fontSize": "40px",
+      "fontWeight": "600",
+      "lineHeight": "44px",
+      "letterSpacing": "-1.2px",
+      "color": "#171717",
+      "sampleText": "A diferença que muda tudo"
+    },
+    {
+      "role": "body",
+      "fontFamily": "Geist",
+      "fontSize": "30px",
+      "fontWeight": "500",
+      "lineHeight": "48px",
+      "letterSpacing": "-0.6px",
+      "color": "#FFFFFF",
+      "sampleText": "Não é agência. Co-pilota."
+    },
+    {
+      "role": "heading-3",
+      "fontFamily": "Geist",
+      "fontSize": "18px",
+      "fontWeight": "500",
+      "lineHeight": "23.4px",
+      "letterSpacing": "-0.18px",
+      "color": "#171717",
+      "sampleText": "O que uma agência faz"
+    },
+    {
+      "role": "link",
+      "fontFamily": "Geist",
+      "fontSize": "17px",
+      "fontWeight": "600",
+      "lineHeight": "27.2px",
+      "letterSpacing": "-0.425px",
+      "color": "#FFFFFF",
+      "sampleText": "Laxtro."
+    },
+    {
+      "role": "label",
+      "fontFamily": "Geist",
+      "fontSize": "11px",
+      "fontWeight": "500",
+      "lineHeight": "17.6px",
+      "letterSpacing": "0.11px",
+      "color": "#4D4D4D",
+      "sampleText": "Posicionamento"
+    }
+  ],
+  "spacing": {
+    "observed": [
+      2,
+      4,
+      6,
+      8,
+      10,
+      12,
+      16,
+      20,
+      24,
+      28,
+      32,
+      40,
+      48,
+      64,
+      80
+    ],
+    "baseUnit": 8
+  },
+  "radius": [
+    "6px",
+    "12px",
+    "9999px"
+  ],
+  "shadows": [
+    {
+      "value": "rgb(235, 235, 235) 0px 0px 0px 1px, rgba(0, 0, 0, 0.04) 0px 1px 1px 0px, rgba(0, 0, 0, 0.06) 0px 2px 4px 0px",
+      "count": 8
+    }
+  ],
+  "buttons": [
+    {
+      "label": "×",
+      "background": "#000000",
+      "color": "#FFFFFF",
+      "padding": "4px 6px",
+      "borderRadius": "0px",
+      "border": "0px none rgba(255, 255, 255, 0.22)",
+      "boxShadow": "none",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "height": "24px"
+    },
+    {
+      "label": "01A Laxtro aceita qualquer profissional?",
+      "background": "#000000",
+      "color": "#171717",
+      "padding": "20px 0px",
+      "borderRadius": "0px",
+      "border": "0px none rgb(23, 23, 23)",
+      "boxShadow": "none",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "height": "62.3906px"
+    },
+    {
+      "label": "Profissional LiberalMédico, advogado, ar",
+      "background": "#FFFFFF",
+      "color": "#171717",
+      "padding": "16px",
+      "borderRadius": "12px",
+      "border": "1px solid rgba(255, 255, 255, 0.08)",
+      "boxShadow": "none",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "height": "110px"
+    }
+  ],
+  "cards": [
+    {
+      "label": "card",
+      "background": "#FAFAFA",
+      "color": "#171717",
+      "padding": "24px",
+      "borderRadius": "12px",
+      "border": "1px solid rgb(235, 235, 235)",
+      "boxShadow": "none",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "height": "278px"
+    },
+    {
+      "label": "card",
+      "background": "#FFFFFF",
+      "color": "#171717",
+      "padding": "24px",
+      "borderRadius": "12px",
+      "border": "0px solid rgb(23, 23, 23)",
+      "boxShadow": "rgb(235, 235, 235) 0px 0px 0px 1px, rgba(0, 0, 0, 0.04) 0px 1px 1px 0px, rgba(0, 0, 0, 0.06) 0px 2px 4px 0px",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "height": "255.891px"
+    }
+  ],
+  "nav": {
+    "label": "navigation",
+    "background": "#000000",
+    "color": "#171717",
+    "padding": "0px",
+    "borderRadius": "0px",
+    "border": "",
+    "boxShadow": "none",
+    "fontSize": "16px",
+    "fontWeight": "400",
+    "height": "97px"
+  }
+}

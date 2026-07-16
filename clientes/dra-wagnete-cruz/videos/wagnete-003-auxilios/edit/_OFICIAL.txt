@@ -1,0 +1,7 @@
+O render FINAL APROVADO deste projeto foi movido para:
+
+    ../../entregas/wagnete-003-auxilios_FINAL.mp4
+
+Origem: final_v4.mp4 (aprovado como oficial).
+Os final_v2/v3 aqui no edit/ sao rascunhos NAO aprovados (historico).
+Nao editar o oficial aqui — a fonte oficial vive em entregas/.

@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Dra. Wagnete — Caso Rodrigo</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face { font-family:"Inter"; font-weight:400; font-style:normal; src:url("assets/fonts/inter-400.woff2") format("woff2"); }
+      @font-face { font-family:"Playfair Display"; font-weight:800; font-style:italic; src:url("assets/fonts/playfair-italic-800.woff2") format("woff2"); }
+      *,*::before,*::after{ box-sizing:border-box; }
+      html,body{ width:1080px; height:1920px; margin:0; overflow:hidden; background:#000; font-family:"Inter",sans-serif; }
+      #root{ position:relative; width:1080px; height:1920px; overflow:hidden; }
+      #bg-video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transform-origin:50% 38%; will-change:transform; }
+      .caption-layer{ position:absolute; inset:0; z-index:20; pointer-events:none; transform:translateZ(0); }
+      /* §4c posições PADRÃO (idênticas ao vídeo 03) */
+      .safe-zone{ position:absolute; top:1040px; left:60px; width:884px; height:290px; display:flex; align-items:flex-start; justify-content:flex-start; }
+      .caption-block{ position:absolute; left:0; top:0; opacity:0; transform-origin:0% 0%; will-change:transform,opacity; backface-visibility:hidden; }
+      .caption-line{ display:flex; align-items:baseline; gap:14px; line-height:1.1; white-space:nowrap; }
+      .caption-line + .caption-line{ margin-top:8px; }
+      .word{ display:inline-block; color:#f5f0d0; text-shadow:0 2px 14px rgba(0,0,0,.62),0 6px 30px rgba(0,0,0,.42); }
+      .word--normal{ font-family:"Inter",sans-serif; font-size:60px; font-weight:400; }
+      .word--italic{ font-family:"Inter",sans-serif; font-size:60px; font-weight:400; font-style:italic; }
+      .word--emphasis{ font-family:"Playfair Display",Georgia,serif; font-size:120px; font-weight:800; font-style:italic; line-height:.9; color:#f5f0d0; }
+      /* elementos glass — esquerda acima da legenda (§4c) */
+      .el-pos{ position:absolute; left:60px; right:60px; bottom:49.5%; display:flex; justify-content:flex-start; pointer-events:none; }
+      .card{ background:rgba(245,240,208,.16); -webkit-backdrop-filter:blur(16px); backdrop-filter:blur(16px); border:1px solid rgba(255,255,255,.5); box-shadow:0 10px 32px rgba(0,0,0,.34); color:#fff; }
+      .el-id{ border-radius:16px; padding:11px 24px; text-align:center; }
+      .el-id b{ font-size:25px; font-weight:700; color:#fff; } .el-id span{ display:block; font-size:16px; color:rgba(255,255,255,.84); margin-top:2px; }
+      .el-char{ border-radius:16px; padding:11px 26px; text-align:center; }
+      .el-char b{ font-family:"Playfair Display",Georgia,serif; font-style:italic; font-size:34px; color:#f5f0d0; line-height:1; } .el-char span{ display:block; font-size:17px; letter-spacing:.06em; text-transform:uppercase; color:rgba(255,255,255,.82); margin-top:4px; }
+      .el-callout{ border-radius:14px; padding:11px 20px; font-size:27px; font-weight:600; }
+      .el-callout .ic{ color:#f0c970; margin-right:8px; }
+      .el-payoff{ border-radius:16px; padding:12px 22px; }
+      .el-payoff div{ font-size:23px; font-weight:600; color:#fff; } .el-payoff b{ color:#f5f0d0; } .el-payoff span{ display:block; font-size:18px; color:var(--amber,#e9b24c); color:#e9b24c; margin-top:4px; font-weight:700; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-width="1080" data-height="1920" data-duration="53.099" data-fps="24">
+      <video id="bg-video" preload="auto" data-start="0" data-duration="53.099" data-track-index="0" data-has-audio="true" src="edit/base.mp4"></video>
+      <div class="caption-layer" aria-hidden="true"><div id="caption-stage" class="safe-zone"></div></div>
+      <div id="idcard" class="clip el-pos" data-start="0" data-duration="4.5" data-track-index="3"><div class="card el-id"><b>Dra. Wagnete Cruz</b><span>Advogada Previdenciária · OAB/MG</span></div></div>
+      <div id="rodcard" class="clip el-pos" data-start="10.3" data-duration="3.3" data-track-index="4"><div class="card el-char"><b>Rodrigo</b><span>músico</span></div></div>
+      <div id="ciccall" class="clip el-pos" data-start="14.3" data-duration="3.2" data-track-index="5"><div class="card el-callout"><span class="ic">⌖</span> cicatriz no braço</div></div>
+      <div id="atkcall" class="clip el-pos" data-start="21.96" data-duration="3.2" data-track-index="5"><div class="card el-callout"><span class="ic">⚠</span> atacado por um animal</div></div>
+      <div id="payoff" class="clip el-pos" data-start="41.54" data-duration="4.6" data-track-index="6"><div class="card el-payoff"><div>veio só pra <b>acompanhar a esposa</b></div><span>→ saiu com o auxílio-acidente</span></div></div>
+      <audio id="sfx-idcard" data-start="0" data-duration="0.6" data-track-index="20" src="assets/sfx/pop.wav"></audio>
+      <audio id="sfx-rodcard" data-start="10.3" data-duration="0.6" data-track-index="21" src="assets/sfx/pop.wav"></audio>
+      <audio id="sfx-ciccall" data-start="14.3" data-duration="0.6" data-track-index="20" src="assets/sfx/pop.wav"></audio>
+      <audio id="sfx-atkcall" data-start="21.96" data-duration="0.6" data-track-index="21" src="assets/sfx/pop.wav"></audio>
+      <audio id="sfx-payoff" data-start="41.54" data-duration="0.6" data-track-index="20" src="assets/sfx/pop.wav"></audio>
+      <audio id="sfx-hook" data-start="45.93" data-duration="0.6" data-track-index="22" src="assets/sfx/whoosh.wav"></audio>
+    </div>
+    <script>
+      var DURATION = 53.099;
+      var SAFE_WIDTH = 860;
+      var ENTRY_DUR = 0.1, SLIDE_DUR = 0.2;
+      var _fc = document.createElement("canvas"), _ctx = _fc.getContext("2d");
+      function fit(text, base, weight, family, maxW) { var s = base, m = Math.floor(base * 0.45); while (s > m) { _ctx.font = weight + " " + s + "px " + family; if (_ctx.measureText(text).width <= maxW) return s; s -= 2; } return m; }
+      var W = [{"text":"Eu","start":0.079,"end":0.159},{"text":"vou","start":0.199,"end":0.259},{"text":"te","start":0.299,"end":0.379},{"text":"contar","start":0.419,"end":0.62},{"text":"uma","start":0.68,"end":0.74},{"text":"história.","start":0.779,"end":1.259},{"text":"Faz","start":1.459,"end":1.62},{"text":"alguns","start":1.659,"end":1.919},{"text":"meses,","start":2,"end":2.48},{"text":"né,","start":2.859,"end":2.939},{"text":"que","start":3.059,"end":3.099},{"text":"um","start":3.139,"end":3.22},{"text":"cliente,","start":3.259,"end":3.679},{"text":"ele","start":3.759,"end":3.919},{"text":"veio","start":3.98,"end":4.319},{"text":"aqui","start":4.5,"end":4.619},{"text":"no","start":4.659,"end":4.719},{"text":"escritório,","start":4.759,"end":5.339},{"text":"mas","start":5.799,"end":5.92},{"text":"só","start":5.96,"end":5.98},{"text":"que","start":6.139,"end":6.199},{"text":"ele","start":6.199,"end":6.319},{"text":"veio","start":6.399,"end":6.599},{"text":"pra","start":6.639,"end":6.739},{"text":"acompanhar","start":6.839,"end":7.299},{"text":"a","start":7.319,"end":7.339},{"text":"esposa,","start":7.44,"end":7.94},{"text":"o","start":8.179,"end":8.22},{"text":"Rodrigo.","start":8.279,"end":8.799},{"text":"O","start":9.519,"end":9.559},{"text":"Rodrigo","start":9.639,"end":10.219},{"text":"é","start":10.46,"end":10.519},{"text":"músico,","start":10.599,"end":11.039},{"text":"né.","start":11.479,"end":11.679},{"text":"Quando","start":11.859,"end":12.019},{"text":"o","start":12.039,"end":12.059},{"text":"Rodrigo","start":12.079,"end":12.4},{"text":"chegou","start":12.46,"end":12.719},{"text":"aqui,","start":12.84,"end":13.099},{"text":"eu","start":13.579,"end":13.699},{"text":"vi","start":13.779,"end":13.859},{"text":"que","start":13.899,"end":13.979},{"text":"tinha","start":14.019,"end":14.159},{"text":"uma","start":14.179,"end":14.339},{"text":"cicatriz","start":14.5,"end":15.299},{"text":"no","start":15.359,"end":15.439},{"text":"braço","start":15.5,"end":15.859},{"text":"dele","start":15.92,"end":16.219},{"text":"e","start":16.44,"end":16.459},{"text":"eu","start":16.5,"end":16.579},{"text":"perguntei:","start":16.639,"end":17.139},{"text":"\"Rodrigo,","start":17.379,"end":17.979},{"text":"o","start":18.18,"end":18.379},{"text":"que","start":18.399,"end":18.46},{"text":"aconteceu","start":18.659,"end":19.119},{"text":"com","start":19.159,"end":19.239},{"text":"você?\"","start":19.299,"end":19.76},{"text":"E","start":19.92,"end":20.02},{"text":"aí,","start":20.039,"end":20.059},{"text":"ele","start":20.059,"end":20.18},{"text":"me","start":20.239,"end":20.299},{"text":"contou,","start":20.34,"end":20.619},{"text":"ele","start":20.659,"end":20.78},{"text":"me","start":20.799,"end":20.84},{"text":"explicou:","start":20.879,"end":21.379},{"text":"\"Eu","start":21.619,"end":21.899},{"text":"fui","start":21.939,"end":22.059},{"text":"atacado","start":22.159,"end":22.739},{"text":"por","start":22.799,"end":22.879},{"text":"um","start":22.92,"end":22.979},{"text":"animal.","start":23.019,"end":23.439},{"text":"Já","start":23.779,"end":23.84},{"text":"faz","start":23.899,"end":24.059},{"text":"muito","start":24.139,"end":24.42},{"text":"tempo,","start":24.539,"end":24.979},{"text":"doutora,","start":25.039,"end":25.34},{"text":"que","start":25.519,"end":25.559},{"text":"isso","start":25.579,"end":25.739},{"text":"aconteceu.\"","start":25.819,"end":26.439},{"text":"Nesse","start":26.779,"end":27.019},{"text":"momento,","start":27.079,"end":27.379},{"text":"eu","start":27.42,"end":27.5},{"text":"perguntei:","start":27.539,"end":28.039},{"text":"\"Qual","start":28.159,"end":28.319},{"text":"que","start":28.439,"end":28.539},{"text":"era","start":28.84,"end":28.979},{"text":"a","start":29.039,"end":29.059},{"text":"sua","start":29.179,"end":29.26},{"text":"atividade?\"","start":29.279,"end":30.159},{"text":"Ele","start":30.719,"end":30.819},{"text":"me","start":30.859,"end":30.939},{"text":"contou","start":30.979,"end":31.199},{"text":"que","start":31.279,"end":31.34},{"text":"é","start":31.42,"end":31.439},{"text":"músico,","start":31.679,"end":32.159},{"text":"que","start":32.38,"end":32.479},{"text":"era","start":32.719,"end":32.88},{"text":"e","start":33.04,"end":33.079},{"text":"ainda","start":33.159,"end":33.38},{"text":"continua","start":33.439,"end":33.759},{"text":"sendo","start":33.86,"end":34.04},{"text":"músico.","start":34.139,"end":35.079},{"text":"Só","start":35.54,"end":35.7},{"text":"que,","start":35.799,"end":35.939},{"text":"claro,","start":36,"end":36.419},{"text":"em","start":37.219,"end":37.4},{"text":"decorrência","start":37.419,"end":37.899},{"text":"dessa","start":37.959,"end":38.419},{"text":"lesão,","start":38.5,"end":38.979},{"text":"ele","start":39.279,"end":39.419},{"text":"ficou","start":39.479,"end":39.72},{"text":"com","start":39.759,"end":39.819},{"text":"uma","start":39.84,"end":39.919},{"text":"limitação.","start":39.959,"end":40.779},{"text":"E","start":40.84,"end":40.899},{"text":"aí,","start":41.04,"end":41.279},{"text":"ele","start":41.419,"end":41.5},{"text":"veio","start":41.559,"end":41.659},{"text":"acompanhando","start":41.739,"end":42.22},{"text":"a","start":42.239,"end":42.259},{"text":"esposa","start":42.36,"end":42.899},{"text":"e","start":42.939,"end":43.02},{"text":"saiu","start":43.079,"end":43.34},{"text":"daqui","start":43.379,"end":44.039},{"text":"com","start":44.099,"end":44.259},{"text":"o","start":44.319,"end":44.34},{"text":"auxílio-acidente.","start":44.399,"end":45.619},{"text":"Se","start":45.68,"end":45.739},{"text":"você","start":45.799,"end":46.02},{"text":"se","start":46.059,"end":46.099},{"text":"identificou","start":46.18,"end":46.759},{"text":"com","start":46.84,"end":46.919},{"text":"essa","start":46.979,"end":47.139},{"text":"história,","start":47.259,"end":47.7},{"text":"se","start":47.779,"end":47.84},{"text":"você","start":47.899,"end":48.18},{"text":"sofreu","start":48.219,"end":48.68},{"text":"acidente","start":48.899,"end":49.779},{"text":"e","start":49.84,"end":49.879},{"text":"quer","start":49.899,"end":50.039},{"text":"saber","start":50.099,"end":50.379},{"text":"mais","start":50.399,"end":50.619},{"text":"sobre","start":50.639,"end":50.819},{"text":"o","start":50.819,"end":50.84},{"text":"auxílio-acidente,","start":50.879,"end":51.979},{"text":"entre","start":52.059,"end":52.199},{"text":"em","start":52.239,"end":52.279},{"text":"contato","start":52.319,"end":52.619},{"text":"comigo.","start":52.659,"end":53.02}];
+      var BLOCKS = [{"line1":[[0,"n"],[1,"n"],[2,"n"],[3,"n"],[4,"n"]],"line2":[[5,"e"]]},{"line1":[[6,"n"],[7,"n"],[8,"n"]],"line2":null},{"line1":[[9,"n"],[10,"n"]],"line2":[[11,"n"],[12,"n"]]},{"line1":[[13,"n"],[14,"n"],[15,"n"]],"line2":[[16,"n"],[17,"n"]]},{"line1":[[18,"n"],[19,"n"],[20,"n"]],"line2":[[21,"n"],[22,"n"]]},{"line1":[[23,"n"]],"line2":[[24,"e"],[25,"e"],[26,"e"]]},{"line1":[[27,"n"],[28,"n"]],"line2":null},{"line1":[[29,"n"],[30,"n"],[31,"n"]],"line2":[[32,"e"]]},{"line1":[[33,"n"]],"line2":null},{"line1":[[34,"n"],[35,"n"],[36,"n"]],"line2":[[37,"n"],[38,"n"]]},{"line1":[[39,"n"],[40,"n"],[41,"n"]],"line2":[[42,"n"],[43,"n"]]},{"line1":[[44,"e"],[45,"e"],[46,"e"]],"line2":null},{"line1":[[47,"n"],[48,"n"]],"line2":null},{"line1":[[49,"n"],[50,"n"],[51,"n"]],"line2":null},{"line1":[[52,"n"],[53,"n"],[54,"n"]],"line2":[[55,"n"],[56,"n"]]},{"line1":[[57,"n"],[58,"n"],[59,"n"]],"line2":[[60,"n"],[61,"n"]]},{"line1":[[62,"n"],[63,"n"],[64,"n"]],"line2":null},{"line1":[[65,"n"],[66,"n"]],"line2":[[67,"e"],[68,"e"],[69,"e"],[70,"e"]]},{"line1":[[71,"n"],[72,"n"]],"line2":[[73,"n"],[74,"n"]]},{"line1":[[75,"n"],[76,"n"],[77,"n"]],"line2":[[78,"n"],[79,"n"]]},{"line1":[[80,"n"],[81,"n"],[82,"n"]],"line2":null},{"line1":[[83,"n"],[84,"n"],[85,"n"]],"line2":[[86,"n"],[87,"n"]]},{"line1":[[88,"n"],[89,"n"],[90,"n"]],"line2":[[91,"n"],[92,"n"]]},{"line1":[[93,"n"],[94,"n"],[95,"n"]],"line2":[[96,"n"],[97,"n"]]},{"line1":[[98,"n"],[99,"n"]],"line2":[[100,"n"],[101,"n"]]},{"line1":[[102,"n"],[103,"n"],[104,"n"]],"line2":null},{"line1":[[105,"n"],[106,"n"]],"line2":[[107,"n"],[108,"n"]]},{"line1":[[109,"n"],[110,"n"],[111,"n"],[112,"n"]],"line2":[[113,"e"]]},{"line1":[[114,"n"],[115,"n"],[116,"n"]],"line2":[[117,"n"],[118,"n"]]},{"line1":[[119,"n"],[120,"n"],[121,"n"]],"line2":[[122,"n"],[123,"n"]]},{"line1":[[124,"n"],[125,"n"]],"line2":[[126,"e"]]},{"line1":[[127,"n"],[128,"n"],[129,"n"]],"line2":[[130,"n"],[131,"n"]]},{"line1":[[132,"n"],[133,"n"],[134,"n"]],"line2":[[135,"n"],[136,"n"]]},{"line1":[[137,"n"],[138,"n"],[139,"n"]],"line2":[[140,"n"],[141,"n"]]},{"line1":[[142,"n"],[143,"n"],[144,"n"]],"line2":null},{"line1":[[145,"e"],[146,"e"],[147,"e"]],"line2":null},{"line1":[[148,"n"]],"line2":null}];
+      var CM = { n: "word word--normal", i: "word word--italic", e: "word word--emphasis" };
+      function lineSize(p) { var hasE = p.some(function (x) { return x[1] === "e"; }); var t = p.map(function (x) { return W[x[0]].text; }).join(" "); return hasE ? fit(t, 120, "800", "Playfair Display", SAFE_WIDTH) : fit(t, 60, "400", "Inter", SAFE_WIDTH); }
+      function build() {
+        var stage = document.getElementById("caption-stage");
+        BLOCKS.forEach(function (b, bi) {
+          var el = document.createElement("div"); el.className = "caption-block"; el.id = "b" + bi;
+          [["L1", b.line1], ["L2", b.line2]].forEach(function (pair) {
+            var ln = pair[1]; if (!ln) return;
+            var sz = lineSize(ln);
+            var line = document.createElement("div"); line.className = "caption-line"; line.id = "b" + bi + pair[0];
+            ln.forEach(function (p, wi) { var sp = document.createElement("span"); sp.className = CM[p[1]]; sp.id = "b" + bi + pair[0] + "w" + wi; sp.textContent = W[p[0]].text; sp.style.fontSize = sz + "px"; line.appendChild(sp); });
+            el.appendChild(line);
+          });
+          stage.appendChild(el);
+        });
+      }
+      build();
+      (function () { BLOCKS.forEach(function (b, bi) { var el = document.getElementById("b" + bi); el.style.opacity = "1"; el.style.position = "relative"; var mw = 0; el.querySelectorAll(".caption-line").forEach(function (l) { if (l.scrollWidth > mw) mw = l.scrollWidth; }); if (mw > SAFE_WIDTH) el.style.transform = "scale(" + SAFE_WIDTH / mw + ")"; el.style.opacity = "0"; el.style.position = ""; }); })();
+      window.__timelines = window.__timelines || {};
+      var tl = gsap.timeline({ paused: true });
+      var allEls = BLOCKS.map(function (_, i) { return document.getElementById("b" + i); });
+      function bStart(bi) { return W[BLOCKS[bi].line1[0][0]].start; }
+      BLOCKS.forEach(function (b, bi) {
+        var el = allEls[bi], start = bStart(bi), next = bi < BLOCKS.length - 1 ? bStart(bi + 1) : DURATION;
+        allEls.forEach(function (o, oi) { if (oi !== bi) tl.set(o, { opacity: 0 }, start); });
+        tl.set(el, { opacity: 1 }, start);
+        b.line1.forEach(function (p, wi) { var we = document.getElementById("b" + bi + "L1w" + wi); tl.set(we, { opacity: 0, scale: 1.12, transformOrigin: "0% 100%" }, start); tl.to(we, { opacity: 1, scale: 1, duration: ENTRY_DUR, ease: "power2.out" }, W[p[0]].start); });
+        if (b.line2) {
+          var hasE = b.line2.some(function (p) { return p[1] === "e"; }), l2 = document.getElementById("b" + bi + "L2");
+          if (hasE) { tl.set(l2, { opacity: 0, x: -1080 }, start); tl.to(l2, { opacity: 1, x: 0, duration: SLIDE_DUR, ease: "power2.out" }, W[b.line2[0][0]].start); }
+          else { tl.set(l2, { opacity: 1 }, start); b.line2.forEach(function (p, wi) { var we = document.getElementById("b" + bi + "L2w" + wi); tl.set(we, { opacity: 0, scale: 1.12, transformOrigin: "0% 100%" }, start); tl.to(we, { opacity: 1, scale: 1, duration: ENTRY_DUR, ease: "power2.out" }, W[p[0]].start); }); }
+        }
+        tl.set(el, { opacity: 0 }, next);
+      });
+      // —— elementos glass ——
+      tl.fromTo("#idcard .card", { opacity: 0, y: -12 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }, 0);
+      tl.to("#idcard .card", { opacity: 0, duration: 0.3, ease: "power1.in" }, 4.20);
+      tl.fromTo("#rodcard .card", { opacity: 0, y: -12 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }, 10.3);
+      tl.to("#rodcard .card", { opacity: 0, duration: 0.3, ease: "power1.in" }, 13.30);
+      tl.fromTo("#ciccall .card", { opacity: 0, y: -12 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }, 14.3);
+      tl.to("#ciccall .card", { opacity: 0, duration: 0.3, ease: "power1.in" }, 17.20);
+      tl.fromTo("#atkcall .card", { opacity: 0, y: -12 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }, 21.96);
+      tl.to("#atkcall .card", { opacity: 0, duration: 0.3, ease: "power1.in" }, 24.86);
+      tl.fromTo("#payoff .card", { opacity: 0, y: -12 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }, 41.54);
+      tl.to("#payoff .card", { opacity: 0, duration: 0.3, ease: "power1.in" }, 45.84);
+      // —— ZOOM / push-ins no #bg-video ——
+      // tensão (cicatriz→ataque): push leve e volta
+      tl.set("#bg-video", { transformOrigin: "50% 44%" }, 14.20);
+      tl.fromTo("#bg-video", { scale: 1.0 }, { scale: 1.05, duration: 2.6, ease: "power1.inOut" }, 14.20);
+      tl.to("#bg-video", { scale: 1.0, duration: 1.6, ease: "power1.inOut" }, 24.04);
+      // clímax: push-in lento do payoff até o fim (zoom no hook)
+      tl.set("#bg-video", { transformOrigin: "50% 36%" }, 41.44);
+      tl.to("#bg-video", { scale: 1.16, duration: 11.66, ease: "power1.in" }, 41.44);
+      tl.to({}, { duration: DURATION }, 0);
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Storyboard · Dra. Wagnete — [003] Auxílios</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:ital,wght@1,800&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ink:#1a1714; --paper:#f4efe7; --paper2:#ece4d6; --line:#d9cdb8;
+    --amber:#c8881e; --amber-soft:#e9b24c; --green:#3f6b4f; --red:#a8442f;
+    --muted:#7a6f60; --cream:#f5f0d0;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font-family:Inter,"Segoe UI",system-ui,Arial,sans-serif;line-height:1.5;}
+  .wrap{max-width:1180px;margin:0 auto;padding:48px 28px 80px;}
+  header{border-bottom:2px solid var(--ink);padding-bottom:26px;margin-bottom:34px;}
+  .kick{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--amber);font-weight:700;}
+  h1{font-family:"Playfair Display",Georgia,serif;font-style:italic;font-weight:800;font-size:44px;margin:8px 0 6px;letter-spacing:-.01em;}
+  h1 .r{font-style:normal;font-family:Inter,sans-serif;font-weight:700;}
+  .sub{color:var(--muted);font-size:15px;max-width:740px;}
+  .meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;}
+  .pill{background:var(--paper2);border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:12.5px;font-weight:600;}
+  .pill b{color:var(--amber);}
+  h2{font-family:"Playfair Display",Georgia,serif;font-style:italic;font-size:26px;font-weight:800;margin:46px 0 18px;display:flex;align-items:center;gap:12px;}
+  h2 .n{font-size:13px;color:#fff;background:var(--ink);border-radius:6px;padding:3px 9px;font-family:Inter,sans-serif;font-style:normal;}
+  .scenes{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
+  .scene{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 2px 0 rgba(0,0,0,.04);display:flex;flex-direction:column;}
+  .frame{position:relative;aspect-ratio:9/16;background:#000 center/cover no-repeat;}
+  .frame .tc{position:absolute;top:10px;left:10px;background:rgba(0,0,0,.66);color:#fff;font-size:11px;font-weight:700;padding:3px 9px;border-radius:6px;letter-spacing:.04em;z-index:5;}
+  .frame .beat{position:absolute;top:10px;right:10px;background:var(--amber);color:#fff;font-size:10px;font-weight:800;padding:3px 8px;border-radius:6px;text-transform:uppercase;letter-spacing:.06em;z-index:5;}
+  /* CAPTION fiel ao caption-editorial-emphasis: texto cru, creme, sem box, alinhado à esquerda */
+  .cap{position:absolute;left:7%;right:7%;bottom:13%;text-align:left;z-index:4;}
+  .cap .nrm{color:var(--cream);font-family:Inter,sans-serif;font-weight:400;font-size:15px;line-height:1.15;
+    text-shadow:0 2px 12px rgba(0,0,0,.6),0 4px 24px rgba(0,0,0,.35);}
+  .cap .em{display:block;color:var(--cream);font-family:"Playfair Display",Georgia,serif;font-style:italic;font-weight:800;
+    font-size:50px;line-height:.9;margin-top:4px;letter-spacing:-.01em;
+    text-shadow:0 2px 12px rgba(0,0,0,.6),0 4px 24px rgba(0,0,0,.35);}
+  .cap .em.sm{font-size:38px;}
+  .cap .mk{background:linear-gradient(transparent 60%, rgba(233,178,76,.8) 60%);}
+  /* elementos animados (mocks) */
+  .el{position:absolute;border-radius:10px;font-weight:700;z-index:6;}
+  .lower3{left:6%;right:6%;bottom:5%;background:rgba(255,255,255,.95);color:var(--ink);padding:9px 13px;display:flex;align-items:center;gap:9px;font-size:12px;box-shadow:0 4px 14px rgba(0,0,0,.3);}
+  .lower3 .dot{width:9px;height:9px;border-radius:50%;background:var(--amber);flex:none;}
+  .lower3 small{color:var(--muted);font-weight:600;}
+  /* identificação: acima da cabeça, glass claro, ~25% menor */
+  .lower3.id{top:5%;bottom:auto;left:50%;right:auto;transform:translateX(-50%);width:max-content;max-width:86%;
+    background:rgba(245,240,208,.16);backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);
+    border:1px solid rgba(255,255,255,.42);color:#fff;padding:6px 11px;gap:7px;font-size:9px;box-shadow:0 5px 18px rgba(0,0,0,.22);}
+  .lower3.id .dot{width:7px;height:7px;}
+  .lower3.id small{color:rgba(255,255,255,.8);}
+  /* card de número: glass clean creme/branco, sem dominar, fora do rosto */
+  .numcard{bottom:31%;right:7%;background:rgba(245,240,208,.14);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    color:#fff;text-align:center;padding:9px 15px;border:1px solid rgba(255,255,255,.4);box-shadow:0 6px 22px rgba(0,0,0,.22);}
+  .numcard .big{font-family:"Playfair Display",Georgia,serif;font-style:italic;font-size:28px;color:var(--cream);line-height:1;}
+  .numcard .lab{font-size:9px;letter-spacing:.12em;text-transform:uppercase;margin-top:3px;color:rgba(255,255,255,.85);}
+  .callout{top:17%;left:7%;background:var(--red);color:#fff;padding:8px 13px;font-size:12px;transform:rotate(-3deg);box-shadow:0 5px 16px rgba(0,0,0,.32);}
+  .callout.green{background:var(--green);}
+  .chip-proof{top:20%;right:7%;background:rgba(255,255,255,.95);color:var(--ink);padding:7px 11px;font-size:11px;box-shadow:0 4px 14px rgba(0,0,0,.28);}
+  .cta{left:8%;right:8%;bottom:8%;background:var(--green);color:#fff;text-align:center;padding:11px;font-size:13px;box-shadow:0 6px 18px rgba(0,0,0,.34);}
+  .cta b{display:block;font-size:15px;}
+  .note{padding:14px 16px 18px;}
+  .note .line{font-size:13.5px;margin-bottom:10px;}
+  .note .line .q{color:var(--muted);font-style:italic;}
+  .tag{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;background:var(--paper2);border:1px solid var(--line);border-radius:6px;padding:3px 8px;margin:0 5px 5px 0;}
+  .tag .sw{width:8px;height:8px;border-radius:2px;}
+  .mech{font-size:11.5px;color:var(--muted);margin-top:8px;}
+  .mech code{background:var(--paper2);border:1px solid var(--line);border-radius:4px;padding:1px 5px;font-family:Consolas,monospace;color:var(--ink);font-size:11px;}
+  table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;}
+  th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);font-size:13.5px;vertical-align:top;}
+  th{background:var(--ink);color:#fff;font-size:11px;letter-spacing:.08em;text-transform:uppercase;}
+  tr:last-child td{border-bottom:none;}
+  td code{background:var(--paper2);border:1px solid var(--line);border-radius:4px;padding:1px 6px;font-family:Consolas,monospace;font-size:11.5px;}
+  .badge{display:inline-block;font-size:10px;font-weight:800;padding:2px 7px;border-radius:5px;text-transform:uppercase;letter-spacing:.05em;}
+  .b-cap{background:#efe0c2;color:#8a5c0f;} .b-num{background:#d9e7df;color:#2c5640;}
+  .b-card{background:#f0d9d2;color:#8a3a26;} .b-l3{background:#dfdaf0;color:#473e8a;}
+  .forbid{background:#fff;border:1px solid var(--line);border-left:4px solid var(--red);border-radius:10px;padding:16px 18px;margin-top:16px;font-size:13.5px;}
+  .forbid b{color:var(--red);}
+  .ok{background:#fffaf0;border:1px solid var(--amber-soft);border-radius:10px;padding:16px 18px;margin-top:16px;font-size:13.5px;}
+  footer{margin-top:54px;border-top:1px solid var(--line);padding-top:18px;color:var(--muted);font-size:12px;}
+  @media(max-width:880px){.scenes{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:560px){.scenes{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="kick">Laxtro · Storyboard de Vídeo · Confidencial</div>
+    <h1>Dra. Wagnete — <span class="r">·</span> Auxílios</h1>
+    <div class="sub">Plano visual do acabamento HyperFrames para o vídeo <b>[003] - Auxílios</b> (66s, 9:16).
+      Legenda fiel ao componente <b>caption-editorial-emphasis</b>: corpo em Inter creme, e o <b>termo-chave vira um
+      display em Playfair itálico</b> — sem caixa, direto na cena. Quando algo é número/dica/prova, entra um <b>elemento animado</b>.</div>
+    <div class="meta">
+      <span class="pill">Formato <b>9:16</b></span>
+      <span class="pill">Duração <b>66s</b></span>
+      <span class="pill">Legenda <b>caption-editorial-emphasis</b></span>
+      <span class="pill">Ritmo <b>calmo</b></span>
+      <span class="pill">Público <b>sênior</b></span>
+    </div>
+  </header>
+
+  <h2><span class="n">A</span> Storyboard cena a cena</h2>
+  <div class="scenes">
+
+    <!-- 1 -->
+    <div class="scene">
+      <div class="frame" style="background-image:url('frames/f1.jpg')">
+        <span class="tc">00:00–05.6</span><span class="beat">Hook</span>
+        <div class="el lower3 id"><span class="dot"></span><div><b>Dra. Wagnete Cruz</b> · <small>Advogada Previdenciária · OAB/MG</small></div></div>
+        <div class="cap"><span class="nrm">Para os aposentados e quem recebe o</span><span class="em sm">benefício por incapacidade</span></div>
+      </div>
+      <div class="note">
+        <div class="line q">"Para os aposentados, e pra quem também tá recebendo o benefício por incapacidade temporária?"</div>
+        <span class="tag"><span class="sw" style="background:var(--amber)"></span>Benefício → display de ênfase</span>
+        <span class="tag"><span class="sw" style="background:#473e8a"></span>Lower-third de identificação</span>
+        <div class="mech"><code>caption-editorial-emphasis</code> + <code>graphic-overlays</code> lower-third</div>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="scene">
+      <div class="frame" style="background-image:url('frames/f2.jpg')">
+        <span class="tc">05.6–08.2</span><span class="beat">Pergunta</span>
+        <div class="cap"><span class="nrm">Esses podem receber o</span><span class="em">auxílio-acidente?</span></div>
+      </div>
+      <div class="note">
+        <div class="line q">"Esses podem receber o auxílio acidente? Em regra, não."</div>
+        <span class="tag"><span class="sw" style="background:var(--amber)"></span>Nome de benefício → ênfase</span>
+        <div class="mech">Pergunta-isca; o benefício vira o hero serifado · <code>caption-editorial-emphasis</code></div>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="scene">
+      <div class="frame" style="background-image:url('frames/f3.jpg')">
+        <span class="tc">08.2–20.0</span><span class="beat">A regra</span>
+        <div class="el callout">⚠ NÃO ACUMULA<br><span style="font-weight:600;font-size:10px">dois benefícios juntos</span></div>
+        <div class="cap"><span class="nrm">Não pode ser acumulado com</span><span class="em sm">outro benefício</span></div>
+      </div>
+      <div class="note">
+        <div class="line q">"O auxílio acidente não pode ser acumulado com outro benefício."</div>
+        <span class="tag"><span class="sw" style="background:var(--red)"></span>Callout de regra</span>
+        <div class="mech">Card desliza pra fixar a regra · <code>graphic-overlays</code> callout</div>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="scene">
+      <div class="frame" style="background-image:url('frames/f4.jpg')">
+        <span class="tc">20.0–26.0</span><span class="beat">A virada</span>
+        <div class="cap"><span class="nrm">Mas pra quase toda regra existe uma</span><span class="em">exceção.</span></div>
+      </div>
+      <div class="note">
+        <div class="line q">"Mas, pra quase todas as regras, existe uma exceção. Vamos lá."</div>
+        <span class="tag"><span class="sw" style="background:var(--amber)"></span>"exceção" → ênfase (a virada)</span>
+        <div class="mech">Marca a virada narrativa · <code>caption-editorial-emphasis</code></div>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="scene">
+      <div class="frame" style="background-image:url('frames/f5.jpg')">
+        <span class="tc">26.0–44.0</span><span class="beat">Número-prova</span>
+        <div class="el numcard"><div class="big">5 anos</div><div class="lab">retroativos · desde 2025</div></div>
+        <div class="cap"><span class="nrm">Tem direito aos últimos</span><span class="em">cinco anos</span></div>
+      </div>
+      <div class="note">
+        <div class="line q">"Se a aposentadoria é recente, 2025, tem direito aos últimos cinco anos."</div>
+        <span class="tag"><span class="sw" style="background:var(--green)"></span>Card de número (count-up)</span>
+        <div class="mech">O número sobe na tela · <code>hook-counter-burst</code> / <code>counting-dynamic-scale</code></div>
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="scene">
+      <div class="frame" style="background-image:url('frames/f6.jpg')">
+        <span class="tc">44.0–50.0</span><span class="beat">Tradução</span>
+        <div class="cap"><span class="nrm">A gente chama de</span><span class="em">retroativos</span></div>
+      </div>
+      <div class="note">
+        <div class="line q">"A gente fala que são os retroativos, né? Ele não vai receber o mensal."</div>
+        <span class="tag"><span class="sw" style="background:var(--amber)"></span>Jargão traduzido → ênfase</span>
+        <div class="mech">Destaca o termo que ela traduz (zero juridiquês) · <code>caption-editorial-emphasis</code></div>
+      </div>
+    </div>
+
+    <!-- 7 -->
+    <div class="scene">
+      <div class="frame" style="background-image:url('frames/f7.jpg')">
+        <span class="tc">50.0–62.0</span><span class="beat">Dica-chave</span>
+        <div class="el callout green">★ DICA IMPORTANTE</div>
+        <div class="cap"><span class="nrm">Quem recebe o</span><span class="em sm">auxílio-doença</span></div>
+      </div>
+      <div class="note">
+        <div class="line q">"Olha que dica importante… ele também tem direito ao auxílio acidente."</div>
+        <span class="tag"><span class="sw" style="background:var(--green)"></span>Callout "dica importante"</span>
+        <span class="tag"><span class="sw" style="background:var(--amber)"></span>Benefício → ênfase</span>
+        <div class="mech">Chip entra no gatilho "dica importante" · <code>graphic-overlays</code> callout</div>
+      </div>
+    </div>
+
+    <!-- 8 -->
+    <div class="scene">
+      <div class="frame" style="background-image:url('frames/f8.jpg')">
+        <span class="tc">62.0–64.0</span><span class="beat">Prova social</span>
+        <div class="el chip-proof">📂 casos reais no escritório<br><small style="color:var(--muted)">sem identificar nomes</small></div>
+        <div class="cap"><span class="nrm">Tenho casos aqui no</span><span class="em">escritório</span></div>
+      </div>
+      <div class="note">
+        <div class="line q">"Eu tenho casos aqui no escritório de pessoas que recebem os dois."</div>
+        <span class="tag"><span class="sw" style="background:var(--muted)"></span>Chip de prova social</span>
+        <div class="mech">Prova sem expor cliente (regra do DNA) · <code>graphic-overlays</code></div>
+      </div>
+    </div>
+
+    <!-- 9 -->
+    <div class="scene">
+      <div class="frame" style="background-image:url('frames/f9.jpg')">
+        <span class="tc">64.0–66.3</span><span class="beat">Fecho</span>
+        <div class="cap"><span class="nrm">Se tem alguma dúvida,</span><span class="em">me chama aqui</span></div>
+      </div>
+      <div class="note">
+        <div class="line q">"Se tem alguma dúvida, me chama aqui."</div>
+        <span class="tag"><span class="sw" style="background:var(--amber)"></span>"me chama aqui" → ênfase</span>
+        <div class="mech">Fecha com a própria legenda (sem lower-third) · <code>caption-editorial-emphasis</code></div>
+      </div>
+    </div>
+
+  </div>
+
+  <h2><span class="n">B</span> Formato fixo da Wagnete — biblioteca de elementos</h2>
+  <p class="sub" style="margin-bottom:16px">O mapa <b>gatilho → elemento → mecanismo</b> que vive no <code>direcao-video.md</code>.
+    Decidido uma vez, reusado em TODO vídeo da Wagnete.</p>
+  <table>
+    <tr><th>Quando (gatilho na fala)</th><th>Elemento</th><th>Mecanismo HyperFrames</th></tr>
+    <tr><td>Corpo da fala (sempre)</td><td><span class="badge b-cap">caption</span> Legenda creme; termo-chave em Playfair itálico</td><td><code>caption-editorial-emphasis</code></td></tr>
+    <tr><td>Nome de benefício (auxílio-acidente, auxílio-doença, BPC/LOAS)</td><td><span class="badge b-cap">ênfase</span> Vira o display de ênfase + glow leve</td><td><code>caption-editorial-emphasis</code> + <code>asr-keyword-glow</code></td></tr>
+    <tr><td>Número de prova (2025, 5 anos, R$, "8 de 10")</td><td><span class="badge b-num">card nº</span> Card de número com contagem (count-up)</td><td><code>hook-counter-burst</code> · <code>counting-dynamic-scale</code></td></tr>
+    <tr><td>Jargão que ela traduz (retroativos, carência…)</td><td><span class="badge b-cap">ênfase</span> Termo vira o hero serifado</td><td><code>caption-editorial-emphasis</code></td></tr>
+    <tr><td>Regra / alerta / "dica importante"</td><td><span class="badge b-card">callout</span> Chip que desliza (cor sóbria)</td><td><code>graphic-overlays</code> callout</td></tr>
+    <tr><td>Prova social / casos reais</td><td><span class="badge b-card">prova</span> Chip de prova (sem nomes)</td><td><code>graphic-overlays</code></td></tr>
+    <tr><td>Abertura (identificação)</td><td><span class="badge b-l3">lower-third</span> Nome+OAB, acima da cabeça (glass claro)</td><td><code>graphic-overlays</code> lower-third</td></tr>
+    <tr><td>Fechamento / CTA</td><td><span class="badge b-cap">caption</span> A própria legenda fecha (ex.: "me chama aqui")</td><td><code>caption-editorial-emphasis</code></td></tr>
+  </table>
+  <p class="sub" style="margin-top:12px"><b>Estética dos elementos (trava):</b> cards e callouts seguem a paleta da legenda —
+    <b>creme/branco translúcido com blur (glass)</b>, cantos suaves, <b>nunca sobre o rosto</b>. Nada de fundo escuro pesado ou borda chamativa.</p>
+
+  <div class="forbid">
+    <b>Proibido (trava de marca, do DNA):</b> sem identidades neon/glitch/arcade/stomp/laser ·
+    sem promessa de resultado ou "garantido" · sem countdown/urgência fake · sem política/religião ·
+    sem estética comercial agressiva · números sempre reais.
+  </div>
+
+  <div class="ok">
+    <b>✓ Componente instalado:</b> <code>caption-editorial-emphasis</code> já está em
+    <code>compositions/components/</code>. A legenda mostrada aqui reflete o look real dele
+    (Inter creme + Playfair itálico, sem box). Aprovado o storyboard, eu ligo na composição com a transcrição da Wagnete.
+  </div>
+
+  <footer>
+    Laxtro Company · Storyboard gerado pela skill <code>laxtro-video</code> · frames reais do vídeo [003] Auxílios ·
+    legendas/elementos aqui são <b>mock do plano</b>, não o render final.
+  </footer>
+</div>
+</body>
+</html>

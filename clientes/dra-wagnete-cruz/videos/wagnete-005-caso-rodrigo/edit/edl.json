@@ -1,0 +1,73 @@
+{
+  "version": 1,
+  "sources": {
+    "R": "C:/Users/josep/.gemini/antigravity-ide/scratch/RepoSkillLaxtro/clientes/dra-wagnete-cruz/videos/wagnete-005-caso-rodrigo/source.mp4"
+  },
+  "ranges": [
+    {
+      "source": "R",
+      "start": 1.729,
+      "end": 3.08,
+      "beat": "seg0",
+      "quote": "Eu vou te contar uma história."
+    },
+    {
+      "source": "R",
+      "start": 4.93,
+      "end": 11.619,
+      "beat": "seg1",
+      "quote": "Faz alguns meses, né, que um cliente, ele veio aqui no escri"
+    },
+    {
+      "source": "R",
+      "start": 12.669,
+      "end": 16.319,
+      "beat": "seg2",
+      "quote": "O Rodrigo. O Rodrigo é músico, né?"
+    },
+    {
+      "source": "R",
+      "start": 17.269,
+      "end": 21.799,
+      "beat": "seg3",
+      "quote": "quando o Rodrigo chegou aqui, eu vi que tinha uma cicatriz n"
+    },
+    {
+      "source": "R",
+      "start": 22.769,
+      "end": 26.219,
+      "beat": "seg4",
+      "quote": "E eu perguntei: \"Rodrigo, o que que aconteceu com você?\""
+    },
+    {
+      "source": "R",
+      "start": 26.969,
+      "end": 32.519,
+      "beat": "seg5",
+      "quote": "e aí, ele me contou, ele me explicou. Falou: \"Eu fui atacado"
+    },
+    {
+      "source": "R",
+      "start": 32.65,
+      "end": 35.319,
+      "beat": "seg6",
+      "quote": "que isso aconteceu.\" Nesse momento, eu perguntei:"
+    },
+    {
+      "source": "R",
+      "start": 36.639,
+      "end": 49.859,
+      "beat": "seg7",
+      "quote": "qual que era a sua atividade?\" Ele me contou que é músico, q"
+    },
+    {
+      "source": "R",
+      "start": 50.639,
+      "end": 62.319,
+      "beat": "seg8",
+      "quote": "ele veio acompanhando a esposa e saiu daqui com o auxílio-ac"
+    }
+  ],
+  "grade": "none",
+  "total_duration_s": 52.79
+}
